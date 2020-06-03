@@ -6,8 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="geekbrains-cloud-storage" />
+        <module name="network" />
+        <module name="client" />
+        <module name="server" />
+        <module name="transfer" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jdbc" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -14,8 +14,7 @@
         <Button maxWidth="Infinity" onAction="#btnClickSelectedServerFile" text="Selected Server File!" HBox.hgrow="ALWAYS" />
     </HBox>
     <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" maxWidth="Infinity" style="-fx-background-color: #FFF;" text="..." textAlignment="CENTER">
-        <font>
-            <Font size="18.0" />
-        </font>
-    </Label>
+      <font>
+         <Font size="18.0" />
+      </font></Label>
 </VBox>

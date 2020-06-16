@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="center" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
+      fx:controller="javafx.Controller">
+
+    <HBox VBox.vgrow="ALWAYS">
+        <VBox HBox.hgrow="ALWAYS">
+            <Label fx:id="clientDirLabel" alignment="CENTER_LEFT" contentDisplay="LEFT" maxWidth="Infinity" style="-fx-background-color: #48d1cc;" text=".../" textAlignment="LEFT">
+                <font>
+                    <Font size="10.0" />
+                </font>
+            </Label>
+            <ListView fx:id="clientItemListView"/>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS">
+            <Label fx:id="storageDirLabel" alignment="CENTER_LEFT" contentDisplay="LEFT" maxWidth="Infinity" style="-fx-background-color: #48d1cc;" text="../" textAlignment="LEFT">
+                <font>
+                    <Font size="10.0" />
+                </font>
+            </Label>
+            <ListView fx:id="storageItemListView"/>
+        </VBox>
+    </HBox>
+    <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" maxWidth="Infinity" style="-fx-background-color: #FFF;" text="..." textAlignment="CENTER">
+        <font>
+            <Font size="18.0" />
+        </font></Label>
+</VBox>

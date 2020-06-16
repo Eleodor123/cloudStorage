@@ -2,61 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5486f60-dc6d-4eb6-acdf-9614ca689a09" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/additions/HW3.TXT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/control/StorageControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/tcp/TCPClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/utils/handlers/CommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/utils/handlers/FileCommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/utils/handlers/ObjectHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/utils/handlers/ServiceCommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/tcp/TCPServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/utils/handlers/CommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/utils/handlers/FileCommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/utils/handlers/ObjectHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/utils/handlers/ServiceCommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/src/main/java/messages/Commands.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/src/main/java/messages/FileFragmentMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/src/main/java/messages/FileListMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/src/main/java/utils/CommandMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/additions/HW4.TXT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/javafx/Cells.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/netty/CommandHandlerClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/netty/NettyClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/CellItem.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/Main.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/images/empty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/network/src/main/java/old/tcp/TCPConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/network/src/main/java/old/tcp/TCPConnectionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/jdbc/DBTemp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/netty/AuthGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/netty/CommandHandlerServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/netty/NettyServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/utils/AuthorizationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/utils/StorageServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/client_storage/Sample.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/server_storage/login1/Sample.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/messages/DirectoryMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/utils/FileUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ClientByte.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ClientWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/MainFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/control/StorageControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/control/StorageControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/javafx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/javafx/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/javafx/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/javafx/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/files/HW1.TXT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/files/spacemarine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/tcp/TCPClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/utils/handlers/CommandHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/utils/handlers/FileCommandHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/utils/handlers/ObjectHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/utils/handlers/ServiceCommandHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/main.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/network/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/network/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/src/main/java/TCPConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/network/src/main/java/tcp/TCPConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/src/main/java/TCPConnectionByte.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/src/main/java/TCPConnectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/network/src/main/java/tcp/TCPConnectionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/src/main/java/TCPConnectionListenerByte.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/network/src/main/java/tcp/TCPConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/network/src/main/java/tcp/TCPConnectionListener.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ByteServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ChatServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/files/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/files/file1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/files/spacemarine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/src/main/java/AbstractMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/java/messages/AbstractMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/src/main/java/AuthMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/java/messages/AuthMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/src/main/java/CommandMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/src/main/java/FileListMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/src/main/java/FileMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/target/classes/AbstractMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/target/classes/AuthMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/target/classes/CommandMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/target/classes/FileListMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer/target/classes/FileMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tcp/TCPServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/utils/handlers/CommandHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/utils/handlers/FileCommandHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/utils/handlers/ObjectHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/utils/handlers/ServiceCommandHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/client_storage/NewFolder/img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/client_storage/file1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/server_storage/file1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/java/utils/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/FileFragmentMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/java/messages/FileFragmentMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/FileListMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/java/utils/CommandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/java/utils/CommandMessage.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -81,10 +78,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/FileFragmentMessage.java">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/netty/CommandHandlerServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="2925">
+              <caret line="221" column="1" selection-start-line="221" selection-start-column="1" selection-end-line="221" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,88 +90,105 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/src/main/java/utils/CommandMessage.java">
+        <entry file="file://$PROJECT_DIR$/client/src/main/java/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+            <state relative-caret-position="255">
+              <caret line="21" column="48" lean-forward="true" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/StorageServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="60" lean-forward="true" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/main/java/control/StorageControl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1435">
+              <caret line="93" column="61" lean-forward="true" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/additions/HW3.TXT">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/network/src/main/java/tcp/TCPConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/network/src/main/java/tcp/TCPConnectionListener.java">
+        <entry file="file://$PROJECT_DIR$/additions/HW4.TXT">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+              <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/tcp/TCPServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="15" column="63" lean-forward="true" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/handlers/CommandHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/handlers/FileCommandHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/FileListMessage.java">
+        <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/AuthMessage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java">
+        <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/DirectoryMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            <state relative-caret-position="68">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding>
+                <element signature="e#308#309#0" expanded="true" />
+                <element signature="e#373#374#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/AuthorizationController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/main/java/netty/CommandHandlerClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-697">
+              <caret line="17" column="70" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="70" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#970#971#0" expanded="true" />
+                <element signature="e#1008#1009#0" expanded="true" />
+                <element signature="e#3009#3010#0" expanded="true" />
+                <element signature="e#3066#3067#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/channel/ChannelInboundHandlerAdapter.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -185,8 +199,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaFXApplication" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -196,12 +210,12 @@
       <find>sendMessageObject</find>
       <find>onReceiveByte</find>
       <find>FileFragment</find>
-      <find>FileFragment</find>
       <find>CMD_MSG_REQUEST_FILE_UPLOAD</find>
       <find>ClassNotFoundException</find>
       <find>TCPConnection</find>
       <find>CMD_MSG_REQUEST_AUTH</find>
       <find>respondOnDownloadFileError</find>
+      <find>Отправляем сообщение о закрытии</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -210,57 +224,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/transfer/src/main/java/MessageObject.java" />
-        <option value="$PROJECT_DIR$/server/src/main/java/ByteServer.java" />
-        <option value="$PROJECT_DIR$/network/src/main/java/TCPConnectionByte.java" />
-        <option value="$PROJECT_DIR$/network/src/main/java/TCPConnectionListenerByte.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/hendlers.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/messages/AuthMessage.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/messages/CommandMessage.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/messages/FilePartMessage.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/messages/FileListMessage.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/messages/FileMessage.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/hendlers/CommandHandler.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/handlers/ObjectHandler.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/handlers/ServiceCommandHandler.java" />
-        <option value="$PROJECT_DIR$/transfer/src/main/java/handlers/UploadCommandHandler.java" />
-        <option value="$PROJECT_DIR$/client/src/main/resources/ьфшт.fxml" />
-        <option value="$PROJECT_DIR$/client/src/main/resources/main.fxml" />
-        <option value="$PROJECT_DIR$/client/src/main/java/utils/CommandMessage.java" />
-        <option value="$PROJECT_DIR$/network/src/main/java/TCPConnection.java" />
-        <option value="$PROJECT_DIR$/server/src/main/java/ustils/handlers/FileCommandHandler.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/control/StorageControl.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/utils/handlers/ServiceCommandHandler.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/utils/handlers/CommandHandler.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/Client.java" />
-        <option value="$PROJECT_DIR$/client/pom.xml" />
-        <option value="$PROJECT_DIR$/utils/pom.xml" />
-        <option value="$PROJECT_DIR$/server/pom.xml" />
-        <option value="$PROJECT_DIR$/network/pom.xml" />
-        <option value="$PROJECT_DIR$/network/src/main/java/TCPConnectionListener.java" />
-        <option value="$PROJECT_DIR$/server/src/main/java/utils/handlers/FileCommandHandler.java" />
-        <option value="$PROJECT_DIR$/server/src/main/java/Server.java" />
-        <option value="$PROJECT_DIR$/utils/src/main/java/messages/AbstractMessage.java" />
-        <option value="$PROJECT_DIR$/utils/src/main/java/messages/AuthMessage.java" />
-        <option value="$PROJECT_DIR$/utils/src/main/java/messages/Commands.java" />
-        <option value="$PROJECT_DIR$/utils/src/main/java/messages/FileFragmentMessage.java" />
-        <option value="$PROJECT_DIR$/utils/src/main/java/messages/FileListMessage.java" />
-        <option value="$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/server/src/main/java/utils/handlers/CommandHandler.java" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/network/src/main/java/tcp/TCPConnection.java" />
-        <option value="$PROJECT_DIR$/network/src/main/java/tcp/TCPConnectionListener.java" />
-        <option value="$PROJECT_DIR$/server/src/main/java/utils/CommandMessage.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/utils/handlers/FileCommandHandler.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/utils/handlers/ObjectHandler.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/utils/handlers/ServiceCommandHandler.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/utils/handlers/ObjectHandler.java" />
-        <option value="$PROJECT_DIR$/utils/src/main/java/utils/CommandMessage.java" />
-        <option value="$PROJECT_DIR$/server/src/main/java/tcp/TCPServer.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/javafx/Main.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/tcp/TCPClient.java" />
         <option value="$PROJECT_DIR$/additions/HW3.TXT" />
+        <option value="$PROJECT_DIR$/utils/src/main/java/messages/DirectoryMessage.java" />
+        <option value="$PROJECT_DIR$/utils/src/main/java/messages/FileFragmentMessage.java" />
+        <option value="$PROJECT_DIR$/utils/src/main/java/utils/Commands.java" />
+        <option value="$PROJECT_DIR$/utils/src/main/java/utils/FileUtils.java" />
+        <option value="$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java" />
+        <option value="$PROJECT_DIR$/network/src/main/java/tcp/TCPConnection.java" />
+        <option value="$PROJECT_DIR$/network/src/main/java/tcp/TCPConnectionListener.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/utils/FileCommandHandler.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/utils/ObjectHandler.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/tcp/TCPServer.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/utils.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/jdbc/UsersDB.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/tcp/TCPClient.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/netty/CommandMessageManager.java" />
+        <option value="$PROJECT_DIR$/utils/src/main/java/utils/CommandMessage.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/netty/NettyServer.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/old/utils/CloudStorageServer.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/utils/CloudStorageServer.java" />
+        <option value="$PROJECT_DIR$/server/src/test/java/utils/CloudStorageServerTest.groovy" />
+        <option value="$PROJECT_DIR$/client/src/main/java/netty/NettyClient.java" />
+        <option value="$PROJECT_DIR$/client/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/server/pom.xml" />
+        <option value="$PROJECT_DIR$/network/pom.xml" />
+        <option value="$PROJECT_DIR$/utils/pom.xml" />
+        <option value="$PROJECT_DIR$/client/src/main/resources/MainClient.fxml" />
+        <option value="$PROJECT_DIR$/client/src/main/resources/ItemListCellStyle.css" />
+        <option value="$PROJECT_DIR$/client/src/main/java/javafx/GUIController.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/Server.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/javafx/FileListCell.java" />
+        <option value="$PROJECT_DIR$/client/src/main/resources/ItemListViewCell.fxml" />
+        <option value="$PROJECT_DIR$/client/src/main/java/ClientMain.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/control/CloudStorageClient.java" />
+        <option value="$PROJECT_DIR$/storage/client_storage/toUpload.txt" />
+        <option value="$PROJECT_DIR$/client/src/main/resources/Style.css" />
+        <option value="$PROJECT_DIR$/client/src/main/java/control/StorageControl.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/javafx/Cells.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/jdbc/DBTemp.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/netty/AuthGateway.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/netty/CommandMessageManager.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/utils/UsersAuthController.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/utils/AuthorizationController.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/javafx/Controller.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/Client.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/netty/CommandHandler.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/netty/CommandHandlerServer.java" />
+        <option value="$PROJECT_DIR$/additions/HW4.TXT" />
       </list>
     </option>
   </component>
@@ -276,23 +290,29 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="network" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="cloud-storage" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="cloud-storage" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
       </expand>
       <select />
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1914" />
-    <option name="y" value="-14" />
-    <option name="width" value="1934" />
-    <option name="height" value="1047" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -357,16 +377,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tcp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geekbrains-cloud-storage" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="handlers" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
@@ -379,6 +390,15 @@
             <path>
               <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
               <item name="geekbrains-cloud-storage" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="geekbrains-cloud-storage" type="462c0819:PsiDirectoryNode" />
               <item name="network" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -444,7 +464,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tcp" type="462c0819:PsiDirectoryNode" />
+              <item name="jdbc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
@@ -453,24 +473,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="handlers" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
               <item name="geekbrains-cloud-storage" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geekbrains-cloud-storage" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="client_storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geekbrains-cloud-storage" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="server_storage" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
@@ -520,23 +532,35 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Groovy JUnit" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="groovy.util.GroovyTestCase" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/transfer/src/main/java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/src/main/java/ustils" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/GB-CloudStorage-84a14e8d617a0ceed0037d4850f9159bac02bde6" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="utils" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="groovy.util.GroovyTestCase" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\client\src\main\java" />
+      <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\storage\server_storage\login1" />
+      <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\storage\client_storage\folderToUploadFolder" />
+      <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\storage\server_storage\login1\toRename" />
+      <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\storage\server_storage\login1\folderToRemove" />
+      <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\storage\server_storage\login1\folderToDownloadFolder" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="utils" />
       <recent name="messages" />
       <recent name="" />
     </key>
@@ -544,6 +568,7 @@
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\storage\server_storage\login1" />
       <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\server\src\main\java\ustils" />
       <recent name="G:\Study\CloudStorage\geekbrains-cloud-storage\client\src\main\resources\files" />
     </key>
@@ -560,16 +585,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ClientByte">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="ByteServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ByteServer" />
-      <module name="server" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChatServer" />
       <module name="server" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -578,6 +596,19 @@
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client" />
       <module name="client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="javafx.Main" />
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="javafx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -597,19 +628,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ChatServer" />
+      <item itemvalue="Application.Client" />
       <item itemvalue="Application.MainFile" />
       <item itemvalue="Application.ByteServer" />
-      <item itemvalue="Application.ClientByte" />
       <item itemvalue="Application.Server" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientByte" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Client" />
         <item itemvalue="Application.ByteServer" />
         <item itemvalue="Application.MainFile" />
-        <item itemvalue="Application.ChatServer" />
       </list>
     </recent_temporary>
   </component>
@@ -637,9 +668,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.56121343" visible="true" weight="0.26332623" />
-      <window_info id="Structure" order="1" sideWeight="0.43878657" side_tool="true" visible="true" weight="0.26332623" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5557963" visible="true" weight="0.17217484" />
+      <window_info id="Structure" order="1" sideWeight="0.44420367" side_tool="true" visible="true" weight="0.17217484" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -647,8 +679,8 @@
       <window_info id="Favorites" order="6" sideWeight="0.5024233" side_tool="true" weight="0.2553305" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.032502707" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4496208" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4723727" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -664,7 +696,11 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Maven" order="6" visible="true" weight="0.09808102" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" />
     </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -706,333 +742,156 @@
       </map>
     </option>
   </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="mLLoader.resources" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/geekbrains_cloud_storage$ClientMain.ic" NAME="ClientMain Coverage Results" MODIFIED="1591631187139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/utils/handlers/UploadCommandHandler.java">
+    <entry file="file://$PROJECT_DIR$/network/src/main/java/old/tcp/TCPConnectionListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        <state relative-caret-position="170">
+          <caret line="10" selection-end-line="10" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#363#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/CommandMessage.java">
+    <entry file="file://$PROJECT_DIR$/network/src/main/java/old/tcp/TCPConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+        <state>
+          <caret selection-start-column="2" selection-end-line="77" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#2667#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/pom.xml">
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/old/tcp/TCPClient.java" />
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/old/control/StorageControl.java" />
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/old/utils/CloudStorageServer.java" />
+    <entry file="file://$PROJECT_DIR$/server/src/test/java/utils/CloudStorageServerTest.groovy" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network/src/main/java/TCPConnectionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+        <state relative-caret-position="102">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+        <state relative-caret-position="323">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/server/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/handlers/UploadCommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="51" column="63" selection-start-line="51" selection-start-column="63" selection-end-line="51" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/cssxfire.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network/src/main/java/TCPConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/CommandMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/utils/CommandMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        <state relative-caret-position="561">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/Server.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="176">
+          <caret line="2867" selection-start-line="2867" selection-end-line="2867" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/javafx-src.zip!/com/sun/javafx/css/PseudoClassState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="134" selection-start-line="134" selection-end-line="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/javafx-src.zip!/javafx/scene/control/IndexedCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/javafx-src.zip!/javafx/css/PseudoClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/javafx-src.zip!/javafx/scene/control/Cell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="725" selection-start-line="725" selection-end-line="725" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="2057" selection-start-line="2057" selection-end-line="2057" />
           <folding>
-            <element signature="e#145#146#0" expanded="true" />
-            <element signature="e#176#177#0" expanded="true" />
+            <element signature="e#79010#79011#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/Client.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/javafx-src.zip!/javafx/scene/control/ListCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="176">
+          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/server_storage/acmp_ru.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/server_storage/file1.txt">
+    <entry file="file://$PROJECT_DIR$/client/src/main/resources/images/storage-folder-empty-125x96.png" />
+    <entry file="file://$PROJECT_DIR$/storage/client_storage/NewFolder/img.png" />
+    <entry file="file://$PROJECT_DIR$/storage/server_storage/login1/folderToDelete/toDeleteFolder.txt" />
+    <entry file="file://$PROJECT_DIR$/storage/client_storage/Sample.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        <state relative-caret-position="102">
+          <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/jre/lib/rt.jar!/sun/nio/fs/WindowsException.class">
+    <entry file="file://$PROJECT_DIR$/network/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/additions/HW2.TXT">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/utils/handlers/ServiceCommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="449">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/utils/handlers/ObjectHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/utils/handlers/CommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/tcp/TCPClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-356">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/handlers/ObjectHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-141">
-          <caret line="38" column="46" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/handlers/ServiceCommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/control/StorageControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/javafx/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/javafx-src.zip!/javafx/collections/ObservableList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/javafx-src.zip!/javafx/event/ActionEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/javafx/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/utils/handlers/FileCommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/resources/main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/AbstractMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/AuthMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/Commands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/FileListMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/FilePartMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/FileFragmentMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="-1342">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-322">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1041,53 +900,231 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/src/main/java/utils/CommandMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network/src/main/java/tcp/TCPConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network/src/main/java/tcp/TCPConnectionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/tcp/TCPServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="15" column="63" lean-forward="true" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
+        <state relative-caret-position="69">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/handlers/CommandHandler.java">
+    <entry file="file://$PROJECT_DIR$/utils/src/main/java/utils/Commands.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="-186">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/handlers/FileCommandHandler.java">
+    <entry file="file://$PROJECT_DIR$/utils/src/main/java/utils/FileUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="23" />
+        <state relative-caret-position="69">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/additions/HW3.TXT">
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/javafx/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="13" lean-forward="true" selection-end-line="20" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/resources/images/empty.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/jdbc/DBTemp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/netty/AuthGateway.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="80" column="1" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/netty/NettyServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="20" selection-end-line="55" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/netty/NettyClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="28" column="13" selection-end-line="57" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/javafx/Cells.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="24" column="47" selection-end-line="54" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/javafx/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="183" column="63" selection-start-line="183" selection-start-column="63" selection-end-line="183" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="2215" column="24" selection-start-line="2215" selection-start-column="24" selection-end-line="2215" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/resources/CellItem.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/resources/Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/resources/Main.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="48" lean-forward="true" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/channel/ChannelInboundHandlerAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/netty/CommandHandlerClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="17" column="70" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#970#971#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#3009#3010#0" expanded="true" />
+            <element signature="e#3066#3067#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/netty/CommandHandlerServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2925">
+          <caret line="221" column="1" selection-start-line="221" selection-start-column="1" selection-end-line="221" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/AuthorizationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/StorageServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="60" lean-forward="true" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/control/StorageControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1435">
+          <caret line="93" column="61" lean-forward="true" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/AuthMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/src/main/java/messages/DirectoryMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#308#309#0" expanded="true" />
+            <element signature="e#373#374#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/additions/HW4.TXT">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -1142,7 +1179,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>utils</last-edited>
+          <last-edited>client</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

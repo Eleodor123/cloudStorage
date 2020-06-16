@@ -1,72 +1,69 @@
 package messages;
 
+import utils.Item;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.Channels;
-import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class FileFragmentMessage extends AbstractMessage {
     public static final int CONST_FRAG_SIZE = 1024 * 1024 * 10;
-    private String fromDir;
-    private String toDir;
-    private String filename;
+    private Item toDirectoryItem;
+    private Item item;
     private long fullFileSize;
-    private String[] fragsNames;
     private int fileFragmentSize;
     private byte[] data;
     private int currentFragNumber;
     private int totalFragsNumber;
-    private String toTempDir;
+    private String toTempDirName;
+    private String fragName;
 
     public FileFragmentMessage(
-            String fromDir,
-            String toDir,
-            String filename,
-            long fullFileSize,
-            int currentFragNumber,
-            int totalFragsNumber,
-            int fileFragmentSize,
-            String[] fragsNames,
-            byte[] data) {
-        this.fromDir = fromDir;
-        this.toDir = toDir;
-        this.filename = filename;
+            Item toDirectoryItem, Item item, long fullFileSize,
+            int currentFragNumber, int totalFragsNumber, int fileFragmentSize, byte[] data) {
+        this.toDirectoryItem = toDirectoryItem;
+        this.item = item;
         this.fullFileSize = fullFileSize;
         this.currentFragNumber = currentFragNumber;
         this.totalFragsNumber = totalFragsNumber;
         this.fileFragmentSize = fileFragmentSize;
-        this.fragsNames = fragsNames;
         this.data = data;
-        fragsNames[currentFragNumber - 1] = filename;
-        fragsNames[currentFragNumber - 1] = fragsNames[currentFragNumber - 1].concat(".frg")
-                .concat(String.valueOf(currentFragNumber))
-                .concat("-").concat(String.valueOf(totalFragsNumber));
-
-        toTempDir = toDir;
-        toTempDir = toTempDir.concat("/").concat(filename)
-                .concat("-temp-").concat(String.valueOf(fullFileSize));
+        fragName = constructFileFragName(item.getItemName(), currentFragNumber, totalFragsNumber);
+        toTempDirName = constructTempDirectoryName(item.getItemName(), fullFileSize);
     }
 
-    public void readFileDataToFragment(String fromDir, String filename, long startByte) throws IOException {
-        String path = fromDir;
-        path = path.concat("/").concat(filename);
-        RandomAccessFile raf = new RandomAccessFile(path, "r");
+    private String constructFileFragName(String itemName, int currentFragNumber, int totalFragsNumber) {
+        int count = String.valueOf(totalFragsNumber).length() -
+                String.valueOf(currentFragNumber).length();
+        StringBuilder sb = new StringBuilder(itemName).append("$frg");
+        for (int i = 0; i < count; i++) {
+            sb.append("0");
+        }
+        sb.append(currentFragNumber).append("-").append(totalFragsNumber);
+        return Paths.get(sb.toString()).toString();
+    }
+
+    private String constructTempDirectoryName(String itemName, long fullFileSize) {
+        return itemName + "$temp-" + fullFileSize;
+    }
+
+    public void readFileDataToFragment(String realItemPathname, long startByte) throws IOException {
+        RandomAccessFile raf = new RandomAccessFile(realItemPathname, "r");
         BufferedInputStream bis = new BufferedInputStream(Channels.newInputStream(raf.getChannel()));
         raf.seek(startByte);
-        bis.read(data);
+        int result = bis.read(data);
         raf.close();
         bis.close();
     }
 
-    public String getToDir() {
-        return toDir;
+    public Item getToDirectoryItem() {
+        return toDirectoryItem;
     }
 
-    public String getFilename() {
-        return filename;
+    public Item getItem() {
+        return item;
     }
 
     public long getFullFileSize() {
@@ -75,10 +72,6 @@ public class FileFragmentMessage extends AbstractMessage {
 
     public byte[] getData() {
         return data;
-    }
-
-    public String getToTempDir() {
-        return toTempDir;
     }
 
     public int getFileFragmentSize() {
@@ -93,38 +86,15 @@ public class FileFragmentMessage extends AbstractMessage {
         return totalFragsNumber;
     }
 
-    public String[] getFragsNames() {
-        return fragsNames;
-    }
-
     public int getCurrentFragNumber() {
         return currentFragNumber;
     }
 
+    public String getToTempDirName() {
+        return toTempDirName;
+    }
 
-//    private static final int CONST_FRAG_SIZE = 1024 * 1024 * 10;
-//    private String filename;
-//    private byte[] data;
-//    private int currentFragNumber;
-//    private int totalFragsNumber;
-//    public FileFragmentMessage(String root, String filename) throws IOException {
-//        this.filename = filename;
-//        this.data = Files.readAllBytes(Paths.get(root, filename));
-//    }
-//
-//    public String getFilename() {
-//        return filename;
-//    }
-//
-//    public byte[] getData() {
-//        return data;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "FileFragment{" +
-//                "filename='" + filename + '\'' +
-//                ", data=" + Arrays.toString(data) +
-//                '}';
-//    }
+    public String getFragName() {
+        return fragName;
+    }
 }

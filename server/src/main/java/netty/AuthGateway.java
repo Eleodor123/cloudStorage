@@ -18,7 +18,7 @@ public class AuthGateway extends ChannelInboundHandlerAdapter {
 
     public AuthGateway(StorageServer storageServer) {
         this.storageServer = storageServer;
-        authorizationController = storageServer.getAuthorizationController();
+        authorizationController = storageServer.getUsersAuthController();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class AuthGateway extends ChannelInboundHandlerAdapter {
                 "login: " + authMessage.getLogin() + ", password: " + authMessage.getPassword());
         if(authorizationController.authorizeUser(context, authMessage)){
             command = Commands.SERVER_RESPONSE_AUTH_OK;
-            Path userStorageRoot = storageServer.getStorageRoot();
+            Path userStorageRoot = storageServer.getSTORAGE_ROOT_PATH();
             userStorageRoot = userStorageRoot.resolve(authMessage.getLogin());
             context.fireChannelRead(new CommandMessage(command, userStorageRoot.toString()));
         } else {

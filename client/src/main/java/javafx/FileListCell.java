@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import java.io.File;
 import java.io.IOException;
 
-public class Cells extends ListCell<File> {
+public class FileListCell extends ListCell<File> {
     private FXMLLoader loader;
 
     @FXML

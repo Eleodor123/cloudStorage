@@ -5,47 +5,67 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+import utils.Item;
 
-import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
-    Label clientDirLabel, storageDirLabel;
+    Button  clientHomeButton, storageHomeButton,
+            clientGoUpButton, storageGoUpButton,
+            clientNewFolderButton, storageNewFolderButton;
     @FXML
-    ListView<File> clientItemListView, storageItemListView;
+    Label clientDirLabel, storageDirLabel;
+
+    @FXML
+    ListView<Item> clientItemListView, storageItemListView;
+
     @FXML
     Label label;
-    private StorageControl storageClient;
-    private String currentClientDir;
-    private String currentStorageDir;
+
+    private StorageControl storageControl;
+    private final String CLIENT_DEFAULT_DIR = "";
+    private final String STORAGE_DEFAULT_DIR = "";
+    private Item clientDefaultDirItem, storageDefaultDirItem;
+    private Item clientCurrentDirItem, storageCurrentDirItem;
+    private String newName;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        storageClient = new StorageControl(Controller.this);
-        currentClientDir = storageClient.getDefaultDirClient();
-        currentStorageDir = storageClient.getDefaultDitServer();
+        storageControl = new StorageControl(Controller.this);
+        clientDefaultDirItem = new Item(CLIENT_DEFAULT_DIR);
+        storageDefaultDirItem = new Item(STORAGE_DEFAULT_DIR);
         initializeClientItemListView();
         initializeStorageItemListView();
     }
 
     public void initializeClientItemListView() {
-        updateClientItemListInGUI(clientDefaultDirectory(), clientFilesList(clientDefaultDirectory()));
+        //выводим в клиентской части интерфейса список объектов в директории по умолчанию
+        updateClientItemListInGUI(clientDefaultDirItem);
     }
 
     public void initializeStorageItemListView() {
-        updateStorageItemListInGUI("../",
-                new File[]{new File("waiting for an item list from the server...")});
+        updateStorageItemListInGUI(new Item(STORAGE_DEFAULT_DIR),
+                new Item[]{new Item("waiting for an item list from the server...",
+                        "", "waiting for an item list from the server...",
+                        "", false)});
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    storageClient.run();
+                    storageControl.run();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -53,41 +73,41 @@ public class Controller implements Initializable {
         }).start();
     }
 
-    public void updateClientItemListInGUI(String directory, final File[] fileObjs){
-        currentClientDir = directory;
+    public void updateClientItemListInGUI(Item directoryItem) {
+        clientCurrentDirItem = directoryItem;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                clientDirLabel.setText(currentClientDir);
-                Controller.this.updateListView(clientItemListView, fileObjs);
+                clientDirLabel.setText(">>" + clientCurrentDirItem.getItemPathname());
+                Controller.this.updateListView(clientItemListView, storageControl.clientItemsList(clientCurrentDirItem));
             }
         });
     }
 
-    public void updateStorageItemListInGUI(String directory, final File[] fileObjs){
-        currentStorageDir = directory;
+    public void updateStorageItemListInGUI(Item directoryItem, final Item[] items){
+        storageCurrentDirItem = directoryItem;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                storageDirLabel.setText(currentStorageDir);
-                Controller.this.updateListView(storageItemListView, fileObjs);
+                storageDirLabel.setText(">>" + storageCurrentDirItem.getItemPathname());
+                Controller.this.updateListView(storageItemListView, items);
             }
         });
     }
 
-    private void updateListView(ListView<File> listView, File[] fileObjs) {
+    private void updateListView(ListView<Item> listView, Item[] items) {
         listView.getItems().clear();
-        listView.getItems().addAll(fileObjs);
-        listView.setCellFactory(new Callback<ListView<File>, ListCell<File>>() {
+        listView.getItems().addAll(items);
+        listView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
             @Override
-            public ListCell<File> call(ListView<File> itemListView) {
-                return new Cells();
+            public ListCell<Item> call(ListView<Item> itemListView) {
+                return new ListCell();
             }
         });
         setContextMenu(listView);
     }
 
-    private void setContextMenu(final ListView<File> listView){
+    private void setContextMenu(final ListView<Item> listView){
         final ContextMenu contextMenu = new ContextMenu();
         if(listView.equals(clientItemListView)){
             contextMenu.getItems().add(menuItemUpload(listView));
@@ -95,7 +115,7 @@ public class Controller implements Initializable {
             contextMenu.getItems().add(menuItemDownload(listView));
         }
         contextMenu.getItems().addAll(menuItemRename(listView), menuItemDelete(listView));
-        final MenuItem menuItem = menuItemGetList(listView);
+        final MenuItem menuItem = menuItemGetInto(listView);
         listView.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
             @Override
             public void handle(ContextMenuEvent event) {
@@ -117,141 +137,144 @@ public class Controller implements Initializable {
         });
     }
 
-    private MenuItem menuItemGetList(final ListView<File> listView) {
-        MenuItem menuItemGetList = new MenuItem("GetList");
-        menuItemGetList.setOnAction(new EventHandler<ActionEvent>() {
+    private MenuItem menuItemGetInto(final ListView<Item> listView) {
+        MenuItem menuItemGetInto = new MenuItem("Get into");
+        menuItemGetInto.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                File item = listView.getSelectionModel().getSelectedItem();
+                Item item = listView.getSelectionModel().getSelectedItem();
                 if (listView.equals(clientItemListView)) {
-
-                    System.out.println("Controller.onClickClientListFolderItem() - " +
-                            ", listView.getSelectionModel().getSelectedItem().getName(): " +
-                            listView.getSelectionModel().getSelectedItem().getName()
-                    );
-                    Controller.this.updateClientItemListInGUI(item.getName(), item.listFiles());
+                    Controller.this.updateClientItemListInGUI(item);
                 } else if (listView.equals(storageItemListView)) {
-                    storageClient.demandDirectoryItemList(item.getName());
+                    storageControl.demandDirectoryItemList(item.getItemPathname());
                 }
                 listView.getSelectionModel().clearSelection();
             }
         });
-        return menuItemGetList;
+        return menuItemGetInto;
     }
 
-    private MenuItem menuItemUpload(final ListView<File> listView) {
+    private MenuItem menuItemUpload(final ListView<Item> listView) {
         MenuItem menuItemUpload = new MenuItem("Upload");
         menuItemUpload.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Controller.callContextMenu().menuItemUpload.setOnAction() - " +
-                        "\nlistView.getSelectionModel().getSelectedItem(): " +
-                        listView.getSelectionModel().getSelectedItem());
-
+                Item item = listView.getSelectionModel().getSelectedItem();
+                try {
+                    storageControl.demandUploadItem(storageCurrentDirItem, item);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 listView.getSelectionModel().clearSelection();
             }
         });
         return menuItemUpload;
     }
 
-    private MenuItem menuItemDownload(final ListView<File> listView) {
+    private MenuItem menuItemDownload(final ListView<Item> listView) {
         MenuItem menuItemDownload = new MenuItem("Download");
         menuItemDownload.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Controller.callContextMenu().menuItemDownload.setOnAction() - " +
-                        "\nlistView.getSelectionModel().getSelectedItem(): " +
-                        listView.getSelectionModel().getSelectedItem());
-
+                Item item = listView.getSelectionModel().getSelectedItem();
+                storageControl.demandDownloadItem(storageCurrentDirItem, clientCurrentDirItem, item);
                 listView.getSelectionModel().clearSelection();
             }
         });
         return menuItemDownload;
     }
 
-    private MenuItem menuItemRename(final ListView<File> listView) {
+    private MenuItem menuItemRename(final ListView<Item> listView) {
         MenuItem menuItemRename = new MenuItem("Rename");
         menuItemRename.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                System.out.println("Controller.callContextMenu().menuItemRename.setOnAction() - " +
-                        "\nlistView.getSelectionModel().getSelectedItem(): " +
-                        listView.getSelectionModel().getSelectedItem());
-
-                File origin = listView.getSelectionModel().getSelectedItem();
-
-                String newName = "Renamed " + origin.getName();
-
-                System.out.println("Controller.callContextMenu().menuItemRename.setOnAction() - " +
-                        "origin.renameTo()): " +
-                        origin.renameTo(new File(Paths.get(origin.getParent(),
-                                newName).toString())));
-
+                Item origin = listView.getSelectionModel().getSelectedItem();
+                String newName = Controller.this.takeNewNameWindow(origin);
+                if (listView.equals(clientItemListView)) {
+                    if (!storageControl.renameClientItem(origin, newName)) {
+                        System.out.println("Controller.menuItemRename() - Some thing wrong with item renaming!");
+                    }
+                    Controller.this.updateClientItemListInGUI(clientCurrentDirItem);
+                } else if (listView.equals(storageItemListView)) {
+                    storageControl.demandRenameItem(storageCurrentDirItem, origin, newName);
+                }
                 listView.getSelectionModel().clearSelection();
-                Controller.this.updateClientItemListInGUI(origin.getParent(), new File(origin.getParent()).listFiles());
             }
         });
         return menuItemRename;
     }
 
-    private MenuItem menuItemDelete(final ListView<File> listView) {
+    private String takeNewNameWindow(Item origin) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rename.fxml"));
+            Parent root = loader.load();
+            RenameController renameController = loader.getController();
+
+            renameController.newName.setText(origin.getItemName());
+            renameController.backController = this;
+
+            stage.setTitle("insert a new name");
+            stage.setScene(new Scene(root, 200, 50));
+            stage.isAlwaysOnTop();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return newName;
+    }
+
+    private MenuItem menuItemDelete(final ListView<Item> listView) {
         MenuItem menuItemDelete = new MenuItem("Delete");
         menuItemDelete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Controller.callContextMenu().menuItemDelete.setOnAction() - " +
-                        "\nlistView.getSelectionModel().getSelectedItem(): " +
-                        listView.getSelectionModel().getSelectedItem());
-
-                File origin = listView.getSelectionModel().getSelectedItem();
-                if (origin.isDirectory()) {
-                    storageClient.deleteFolder(origin);
-                } else {
-                    System.out.println("Controller.callContextMenu().menuItemDelete.setOnAction() - " +
-                            "origin.delete(): " + origin.delete());
+                Item item = listView.getSelectionModel().getSelectedItem();
+                if (listView.equals(clientItemListView)) {
+                    if (!storageControl.deleteClientItem(item)) {
+                        System.out.println("GUIController.menuItemRename() - Some thing wrong with item deleting!");
+                    }
+                    Controller.this.updateClientItemListInGUI(clientCurrentDirItem);
+                } else if (listView.equals(storageItemListView)) {
+                    storageControl.demandDeleteItem(storageCurrentDirItem, item);
                 }
                 listView.getSelectionModel().clearSelection();
-                Controller.this.updateClientItemListInGUI(origin.getParent(), new File(origin.getParent()).listFiles());
             }
         });
         return menuItemDelete;
     }
 
-    private String clientDefaultDirectory(){
-        return storageClient.getDefaultDirClient();
+    @FXML
+    public void onClientHomeBtnClicked(MouseEvent mouseEvent) {
+        updateClientItemListInGUI(clientDefaultDirItem);
     }
 
-    private File[] clientFilesList(String currentDirectory) {
-        return new File(realClientDirectory(currentDirectory)).listFiles();
+    @FXML
+    public void onStorageHomeBtnClicked(MouseEvent mouseEvent) {
+        storageControl.demandDirectoryItemList(STORAGE_DEFAULT_DIR);
     }
 
-    private String realClientDirectory(String currentDirectory){
-        return Paths.get(StorageControl.CLIENT_ROOT, currentDirectory).toString();
+    @FXML
+    public void onClientGoUpBtnClicked(MouseEvent mouseEvent) {
+        updateClientItemListInGUI(storageControl.getParentDirItem(
+                clientCurrentDirItem, clientDefaultDirItem,
+                StorageControl.CLIENT_ROOT));
+    }
+
+    @FXML
+    public void onStorageGoUpBtnClicked(MouseEvent mouseEvent) {
+        storageControl.demandDirectoryItemList(storageCurrentDirItem.getParentPathname());
+    }
+
+    public void setNewName(String newName) {
+        this.newName = newName;
     }
 
     public void dispose() {
-        System.out.println("Client closed");
+        System.out.println("Closing");
     }
 
-
-//    @FXML
-//    ListView<String> clientFiles, serverFiles;
-//
-//    @FXML
-//    Label label;
-//
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
-//        clientFiles.getItems().addAll("C_File 1", "C_File 2", "C_File 3");
-//        serverFiles.getItems().addAll("S_File 1", "S_File 2", "S_File 3");
-//    }
-//
-//    public void btnClickSelectedClientFile(ActionEvent actionEvent) {
-//        label.setText(clientFiles.getSelectionModel().getSelectedItem());
-//    }
-//
-//    public void btnClickSelectedServerFile(ActionEvent actionEvent) {
-//        label.setText(serverFiles.getSelectionModel().getSelectedItem());
-//    }
 }

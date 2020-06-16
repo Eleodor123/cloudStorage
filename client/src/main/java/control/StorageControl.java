@@ -7,14 +7,13 @@ import messages.DirectoryMessage;
 import messages.FileFragmentMessage;
 import messages.FileMessage;
 import netty.NettyClient;
-import utils.CommandMessage;
-import utils.Commands;
-import utils.FileUtils;
+import utils.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class StorageControl {
@@ -24,17 +23,15 @@ public class StorageControl {
     private static final int PORT = 8190;
     private final PrintStream log = System.out;
 
-    public static final String CLIENT_ROOT = "storage/client_storage";
-    private final String defaultDirClient = "";
-    private final String defaultDitServer = "";
-    private FileUtils fileUtils;
+    public static final Path CLIENT_ROOT = Paths.get("storage","client_storage");
+    private FileUtils fileUtils = FileUtils.getOwnObject();
+    private final ItemUtils itemUtils = ItemUtils.getOwnObject();
 
     private final String login = "login1";
     private final String password = "pass1";
 
     public StorageControl(Controller Controller) {
         this.Controller = Controller;
-        fileUtils = new FileUtils();
     }
 
     public void run() throws Exception {
@@ -58,20 +55,20 @@ public class StorageControl {
                 new DirectoryMessage(directory)));
     }
 
-    public void uploadFile(String fromDir, String toDir, String filename) throws IOException {
-        printMsg("***StorageControl.uploadFile() - has started***");
-        System.out.println("StorageControl.uploadFile - fromDir: " + fromDir +
-                ", toDir: " + toDir + ", filename: " + filename);
-        long fileSize = Files.size(Paths.get(fromDir, filename));
-        if(fileSize > FileFragmentMessage.CONST_FRAG_SIZE){
-            uploadFileByFrags(fromDir, toDir, filename, fileSize);
-        } else {
-            uploadEntireFile(fromDir, toDir, filename, fileSize);
+    public void demandUploadItem(Item storageToDirItem, Item clientItem) throws IOException {
+        if(clientItem.isDirectory()){
+            return;
         }
-        printMsg("***StorageControl.uploadFile() - has finished***");
+        Path realClientItemPath = itemUtils.getRealPath(clientItem.getItemPathname(), CLIENT_ROOT);
+        long fileSize = Files.size(realClientItemPath);
+        if(fileSize > FileFragmentMessage.CONST_FRAG_SIZE){
+            uploadFileByFrags(storageToDirItem, clientItem, fileSize);
+        } else {
+            uploadEntireFile(storageToDirItem, clientItem, fileSize);
+        }
     }
 
-    private void uploadFileByFrags(String fromDir, String toDir, String filename, long fullFileSize) throws IOException {
+    private void uploadFileByFrags(Item storageToDirItem, Item clientItem, long fullFileSize) throws IOException {
         long start = System.currentTimeMillis();
 
         int totalEntireFragsNumber = (int) fullFileSize / FileFragmentMessage.CONST_FRAG_SIZE;
@@ -87,15 +84,15 @@ public class StorageControl {
         byte[] data = new byte[FileFragmentMessage.CONST_FRAG_SIZE];
         String[] fragsNames = new String[totalFragsNumber];
         for (int i = 1; i <= totalEntireFragsNumber; i++) {
-            FileFragmentMessage fileFragmentMessage =
-                    new FileFragmentMessage(fromDir, toDir, filename, fullFileSize,
-                            i, totalFragsNumber, FileFragmentMessage.CONST_FRAG_SIZE, fragsNames, data);
-            fileFragmentMessage.readFileDataToFragment(fromDir, filename, startByte);
+            FileFragmentMessage fileFragmentMessage = new FileFragmentMessage(
+                    storageToDirItem, clientItem, fullFileSize, i, totalFragsNumber,
+                    FileFragmentMessage.CONST_FRAG_SIZE, data);
+            fileFragmentMessage.readFileDataToFragment(
+                    itemUtils.getRealPath(clientItem.getItemPathname(), CLIENT_ROOT).toString(),
+                    startByte);
             startByte += FileFragmentMessage.CONST_FRAG_SIZE;
-
             context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_FRAG_UPLOAD,
                     fileFragmentMessage));
-
         }
 
         System.out.println("StorageControl.uploadFileByFrags() - currentFragNumber: " + totalFragsNumber);
@@ -103,11 +100,12 @@ public class StorageControl {
 
         if(totalFragsNumber > totalEntireFragsNumber){
             byte[] dataFinal = new byte[finalFileFragmentSize];
-            FileFragmentMessage fileFragmentMessage =
-                    new FileFragmentMessage(fromDir, toDir, filename, fullFileSize,
-                            totalFragsNumber, totalFragsNumber, finalFileFragmentSize, fragsNames, dataFinal);
-            fileFragmentMessage.readFileDataToFragment(fromDir, filename, startByte);
-
+            FileFragmentMessage fileFragmentMessage = new FileFragmentMessage(
+                    storageToDirItem, clientItem, fullFileSize, totalFragsNumber,
+                    totalFragsNumber, finalFileFragmentSize, dataFinal);
+            fileFragmentMessage.readFileDataToFragment(
+                    itemUtils.getRealPath(clientItem.getItemPathname(), CLIENT_ROOT).toString(),
+                    startByte);
             context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_FRAG_UPLOAD,
                     fileFragmentMessage));
         }
@@ -115,15 +113,11 @@ public class StorageControl {
         System.out.println("StorageControl.uploadFileByFrags() - duration(mc): " + finish);
     }
 
-    private void uploadEntireFile(String fromDir, String toDir, String filename, long fileSize) {
-        FileMessage fileMessage = new FileMessage(fromDir, toDir, filename, fileSize);
-
-        System.out.println("StorageControl.uploadEntireFile() - fileUtils: " + fileUtils +
-                ", fromDir: " + fromDir +
-                ", toDir: " + toDir +
-                ", fileMessage: " + fileMessage);
-
-        if(fileUtils.readFile(fromDir, fileMessage)){
+    private void uploadEntireFile(Item storageToDirItem, Item clientItem, long fileSize) {
+        FileMessage fileMessage = new FileMessage(storageToDirItem,
+                clientItem, fileSize);
+        if(fileUtils.readFile(itemUtils.getRealPath(clientItem.getItemPathname(), CLIENT_ROOT),
+                fileMessage)){
             context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_UPLOAD,
                     fileMessage));
         } else {
@@ -131,24 +125,73 @@ public class StorageControl {
         }
     }
 
-    public void downloadFile(String fromDir, String toDir, String filename){
-        printMsg("***StorageControl.downloadFile() - has started***");
-        FileMessage fileMessage = new FileMessage(fromDir, toDir, filename);
-        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_DOWNLOAD,
+    public void demandDownloadItem(Item storageFromDirItem, Item clientToDirItem, Item storageItem){
+        FileMessage fileMessage = new FileMessage(storageFromDirItem, clientToDirItem, storageItem);
+        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_UPLOAD,
                 fileMessage));
-        printMsg("***StorageControl.downloadFile() - has finished***");
     }
 
-    public void deleteFolder(File origin) {
-        printMsg("***StorageControl.deleteFolder() - has finished*** - folder: " + origin);
+    public boolean downloadItem(Item clientToDirItem, Item item, byte[] data, long fileSize){
+        String realDirPathname = itemUtils.getRealPath(clientToDirItem.getItemPathname(), CLIENT_ROOT).toString();
+        Path realNewToItemPath = Paths.get(realDirPathname, item.getItemName());
+        return fileUtils.saveFile(realNewToItemPath, data, fileSize);
     }
 
-    public String getDefaultDitServer() {
-        return defaultDitServer;
+    public boolean downloadItemFragment(FileFragmentMessage fileFragMsg) {
+        Path realToTempDirPath = itemUtils.getRealPath(
+                Paths.get(
+                        fileFragMsg.getToDirectoryItem().getItemPathname(),
+                        fileFragMsg.getToTempDirName()).toString(),
+                CLIENT_ROOT);
+        Path realToFragPath = Paths.get(
+                realToTempDirPath.toString(), fileFragMsg.getFragName());
+        return fileUtils.saveFileFragment(realToTempDirPath, realToFragPath, fileFragMsg);
     }
 
-    public String getDefaultDirClient() {
-        return defaultDirClient;
+    public boolean compileItemFragments(FileFragmentMessage fileFragMsg) {
+        Path realToTempDirPath = itemUtils.getRealPath(
+                Paths.get(
+                        fileFragMsg.getToDirectoryItem().getItemPathname(),
+                        fileFragMsg.getToTempDirName()).toString(),
+                CLIENT_ROOT);
+        Path realToFilePath = itemUtils.getRealPath(
+                Paths.get(
+                        fileFragMsg.getToDirectoryItem().getItemPathname(),
+                        fileFragMsg.getItem().getItemName()).toString(),
+                CLIENT_ROOT);
+        return fileUtils.compileFileFragments(realToTempDirPath, realToFilePath, fileFragMsg);
+    }
+
+    public boolean renameClientItem(Item origin, String newName) {
+        Path originPath = itemUtils.getRealPath(origin.getItemPathname(), CLIENT_ROOT);
+        File originFileObject = new File(originPath.toString());
+        Path newPath = Paths.get(originFileObject.getParent(), newName);
+        File newFileObject = new File(newPath.toString());
+        return originFileObject.renameTo(newFileObject);
+    }
+
+    public void demandRenameItem(Item storageDirectoryItem, Item storageOriginItem, String newName) {
+        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_RENAME_FILE,
+                new FileMessage(storageDirectoryItem, storageOriginItem, newName)));
+    }
+
+    public boolean deleteClientItem(Item item) {
+        File fileObject = new File(itemUtils.getRealPath(item.getItemPathname(), CLIENT_ROOT).toString());
+        return fileUtils.deleteFileObject(fileObject);
+    }
+
+    public void demandDeleteItem(Item storageDirectoryItem, Item item) {
+        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_DELETE_FILE,
+                new FileMessage(storageDirectoryItem, item)));
+    }
+
+    public Item getParentDirItem(Item directoryItem, Item defaultDirItem, Path rootPath) {
+        return itemUtils.getParentDirItem(directoryItem, defaultDirItem,
+                rootPath);
+    }
+
+    public Item[] clientItemsList(Item clientCurrentDirItem) {
+        return itemUtils.getItemsList(clientCurrentDirItem, CLIENT_ROOT);
     }
 
     public FileUtils getFileUtils() {

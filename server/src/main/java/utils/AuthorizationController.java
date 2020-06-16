@@ -1,7 +1,7 @@
 package utils;
 
 import io.netty.channel.ChannelHandlerContext;
-import jdbc.DBTemp;
+import jdbc.DBConf;
 import messages.AuthMessage;
 
 public class AuthorizationController {
@@ -34,8 +34,8 @@ public class AuthorizationController {
     }
 
     private boolean checkLoginAndPassword(String login, String password) {
-        for (int i = 0; i < DBTemp.users.length; i++) {
-            if(login.equals(DBTemp.users[i][0]) && password.equals(DBTemp.users[i][1])){
+        for (int i = 0; i < DBConf.users.length; i++) {
+            if(login.equals(DBConf.users[i][0]) && password.equals(DBConf.users[i][1])){
                 return true;
             }
         }

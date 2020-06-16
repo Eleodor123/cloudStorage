@@ -1,24 +1,32 @@
 package messages;
 
+import utils.Item;
+
 import java.io.File;
 
 public class DirectoryMessage extends AbstractMessage {
-    private String directory;
-    private File[] fileObjectsList;
+    private String directoryPathname;
+    private Item directoryItem;
+    private Item[] itemsList;
 
-    public DirectoryMessage(String directory) {
-        this.directory = directory;
+    public DirectoryMessage(String directoryPathname) {
+        this.directoryPathname = directoryPathname;
     }
 
-    public void takeFileObjectsList(String directory){
-        fileObjectsList = new File(directory).listFiles();
+    public DirectoryMessage(Item directoryItem, Item[] itemsList) {
+        this.directoryItem = directoryItem;
+        this.itemsList = itemsList;
     }
 
-    public String getDirectory() {
-        return directory;
+    public String getDirectoryPathname() {
+        return directoryPathname;
     }
 
-    public File[] getFileObjectsList() {
-        return fileObjectsList;
+    public Item getDirectoryItem() {
+        return directoryItem;
+    }
+
+    public Item[] getItemsList() {
+        return itemsList;
     }
 }

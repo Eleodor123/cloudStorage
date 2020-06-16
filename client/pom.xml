@@ -25,12 +25,6 @@
     <dependencies>
         <dependency>
             <groupId>com.geekbrains</groupId>
-            <artifactId>network</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.geekbrains</groupId>
             <artifactId>utils</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>

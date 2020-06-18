@@ -1,51 +1,67 @@
 package messages;
 
+import utils.Item;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileMessage extends AbstractMessage {
-    private String fromDir;
-    private String toDir;
-    private String filename;
     private long fileSize;
     private byte[] data;
+    private Item clientDirectoryItem;
+    private Item storageDirectoryItem;
+    private Item item;
+    private String newName;
 
-    public FileMessage(String fromDir, String toDir, String filename) {
-        this.fromDir = fromDir;
-        this.toDir = toDir;
-        this.filename = filename;
-    }
-
-    public FileMessage(String fromDir, String toDir, String filename, long fileSize) {
-        this.fromDir = fromDir;
-        this.toDir = toDir;
-        this.filename = filename;
+    public FileMessage(Item storageDirectoryItem, Item item, long fileSize) {
+        this.storageDirectoryItem = storageDirectoryItem;
+        this.item = item;
         this.fileSize = fileSize;
     }
 
-    public void readFileData() throws IOException {
-        this.data = Files.readAllBytes(Paths.get(fromDir, filename));
+    public FileMessage(Item storageDirectoryItem, Item clientDirectoryItem, Item item) {
+        this.storageDirectoryItem = storageDirectoryItem;
+        this.clientDirectoryItem = clientDirectoryItem;
+        this.item = item;
     }
 
-    public void readFileData(String fromDir) throws IOException {
-        this.data = Files.readAllBytes(Paths.get(fromDir, filename));
+    public FileMessage(Item storageDirectoryItem, Item clientDirectoryItem, Item item, long fileSize) {
+        this.storageDirectoryItem = storageDirectoryItem;
+        this.clientDirectoryItem = clientDirectoryItem;
+        this.item = item;
+        this.fileSize = fileSize;
     }
 
-    public String getFromDir() {
-        return fromDir;
+    public FileMessage(Item storageDirectoryItem, Item item, String newName) {
+        this.storageDirectoryItem = storageDirectoryItem;
+        this.item = item;
+        this.newName = newName;
     }
 
-    public String getToDir() {
-        return toDir;
+    public FileMessage(Item storageDirectoryItem, Item item) {
+        this.storageDirectoryItem = storageDirectoryItem;
+        this.item = item;
     }
 
-    public String getFilename() {
-        return filename;
+    public void readFileData(String itemPathname) throws IOException {
+        this.data = Files.readAllBytes(Paths.get(itemPathname));
     }
 
-    public byte[] getData() {
-        return data;
+    public Item getClientDirectoryItem() {
+        return clientDirectoryItem;
+    }
+
+    public Item getStorageDirectoryItem() {
+        return storageDirectoryItem;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public String getNewName() {
+        return newName;
     }
 
     public long getFileSize() {
@@ -54,5 +70,9 @@ public class FileMessage extends AbstractMessage {
 
     public void setFileSize(long fileSize) {
         this.fileSize = fileSize;
+    }
+
+    public byte[] getData() {
+        return data;
     }
 }

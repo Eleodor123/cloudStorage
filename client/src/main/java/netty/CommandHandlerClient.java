@@ -21,8 +21,6 @@ public class CommandHandlerClient extends ChannelInboundHandlerAdapter {
     ChannelHandlerContext context;
     private Controller controller;
 
-    private int command;
-
     public CommandHandlerClient(StorageControl storageClient) {
         this.storageClient = storageClient;
         fileUtils = storageClient.getFileUtils();
@@ -38,10 +36,6 @@ public class CommandHandlerClient extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext context, Object msgObject) {
         try {
             CommandMessage commandMessage = (CommandMessage) msgObject;
-
-            printMsg("[client]CommandHandlerClient.channelRead() - command: "
-                    + commandMessage.getCommand());
-
             recognizeAndArrangeMessageObject(commandMessage);
         }
         finally {
@@ -55,27 +49,26 @@ public class CommandHandlerClient extends ChannelInboundHandlerAdapter {
                 onServerConnectedResponse(commandMessage);
                 break;
             case Commands.SERVER_RESPONSE_AUTH_OK:
-                onAuthOkServerResponse(commandMessage);
+            case Commands.SERVER_RESPONSE_ITEMS_LIST_OK:
+            case Commands.SERVER_RESPONSE_UPLOAD_ITEM_OK:
+            case Commands.SERVER_RESPONSE_UPLOAD_FILE_FRAGS_OK:
+            case Commands.SERVER_RESPONSE_RENAME_ITEM_OK:
+            case Commands.SERVER_RESPONSE_DELETE_ITEM_OK:
+                updateStorageItemListInGUI(commandMessage);
                 break;
             case Commands.SERVER_RESPONSE_AUTH_ERROR:
                 onAuthErrorServerResponse(commandMessage);
                 break;
-            case Commands.SERVER_RESPONSE_FILE_OBJECTS_LIST_OK:
-                onFileObjectsListOkServerResponse(commandMessage);
+            case Commands.SERVER_RESPONSE_UPLOAD_ITEM_ERROR:
+                onUploadItemErrorServerResponse(commandMessage);
                 break;
-            case Commands.SERVER_RESPONSE_FILE_UPLOAD_OK:
-                onUploadFileOkServerResponse(commandMessage);
+            case Commands.SERVER_RESPONSE_DOWNLOAD_ITEM_OK:
+                onDownloadItemOkServerResponse(commandMessage);
                 break;
-            case Commands.SERVER_RESPONSE_FILE_UPLOAD_ERROR:
-                onUploadFileErrorServerResponse(commandMessage);
-                break;
-            case Commands.SERVER_RESPONSE_FILE_DOWNLOAD_OK:
-                onDownloadFileOkServerResponse(commandMessage);
-                break;
-            case Commands.SERVER_RESPONSE_FILE_DOWNLOAD_ERROR:
+            case Commands.SERVER_RESPONSE_DOWNLOAD_ITEM_ERROR:
                 onDownloadFileErrorServerResponse(commandMessage);
                 break;
-            case Commands.SERVER_RESPONSE_FILE_FRAGS_DOWNLOAD_OK:
+            case Commands.SERVER_RESPONSE_DOWNLOAD_FILE_FRAG_OK:
                 onDownloadFileFragOkServerResponse(commandMessage);
                 break;
         }
@@ -85,80 +78,50 @@ public class CommandHandlerClient extends ChannelInboundHandlerAdapter {
         storageClient.startAuthorization(context);
     }
 
-    private void onAuthOkServerResponse(CommandMessage commandMessage) {
-        DirectoryMessage directoryMessage = (DirectoryMessage) commandMessage.getMessageObject();
-        controller.updateStorageItemListInGUI(directoryMessage.getDirectory(),
-                directoryMessage.getFileObjectsList());
-    }
-
     private void onAuthErrorServerResponse(CommandMessage commandMessage) {
         printMsg("[client]CommandHandlerClient.onAuthErrorServerResponse() - Invalid login or password");
     }
 
-    private void onFileObjectsListOkServerResponse(CommandMessage commandMessage) {
-        DirectoryMessage directoryMessage = (DirectoryMessage) commandMessage.getMessageObject();
-        controller.updateStorageItemListInGUI(directoryMessage.getDirectory(),
-                directoryMessage.getFileObjectsList());
+    private void onUploadItemErrorServerResponse(CommandMessage commandMessage) {
+        printMsg("[client]CommandMessageManager.onUploadFileErrorServerResponse() command: " + commandMessage.getCommand());
     }
 
-    private void onUploadFileOkServerResponse(CommandMessage commandMessage) {
-        DirectoryMessage directoryMessage = (DirectoryMessage) commandMessage.getMessageObject();
-        controller.updateStorageItemListInGUI(directoryMessage.getDirectory(),
-                directoryMessage.getFileObjectsList());
-
-        printMsg("[client]CommandHandlerClient.onUploadFileOkServerResponse() - " +
-                "command: " + commandMessage.getCommand() +
-                ". directoryMessage.getDirectory(): " + directoryMessage.getDirectory() +
-                ". directoryMessage.getFileObjectsList(): " +
-                Arrays.toString(directoryMessage.getFileObjectsList()));
-
-    }
-
-    private void onUploadFileErrorServerResponse(CommandMessage commandMessage) {
-        printMsg("[client]CommandHandlerClient.onUploadFileErrorServerResponse() command: " + commandMessage.getCommand());
-    }
-
-    private void onDownloadFileOkServerResponse(CommandMessage commandMessage) {
+    private void onDownloadItemOkServerResponse(CommandMessage commandMessage) {
         FileMessage fileMessage = (FileMessage) commandMessage.getMessageObject();
-        String storageDir = fileMessage.getFromDir();
-        String clientDir = fileMessage.getToDir();
+        if(storageClient.downloadItem(fileMessage.getClientDirectoryItem(), fileMessage.getItem(),
+                fileMessage.getData(), fileMessage.getFileSize())){
+            controller.updateClientItemListInGUI(fileMessage.getClientDirectoryItem());
+        } else {
+            printMsg("[client]" + fileUtils.getMsg());
+        }
+    }
 
-        String toDir = storageClient.getDefaultDirClient();
-        toDir = toDir.concat("/").concat(clientDir);
-        if(fileUtils.saveFile(toDir, fileMessage)){
+    private void onDownloadFileErrorServerResponse(CommandMessage commandMessage) {
+        printMsg("[client]CommandMessageManager.onDownloadFileErrorServerResponse() command: " + commandMessage.getCommand());
+    }
+
+    private void onDownloadFileFragOkServerResponse(CommandMessage commandMessage) {
+        FileFragmentMessage fileFragMsg = (FileFragmentMessage) commandMessage.getMessageObject();
+        int command;
+        if(storageClient.downloadItemFragment(fileFragMsg)){
             command = Commands.CLIENT_RESPONSE_FILE_DOWNLOAD_OK;
         } else {
             printMsg("[client]" + fileUtils.getMsg());
             command = Commands.CLIENT_RESPONSE_FILE_DOWNLOAD_ERROR;
         }
-        fileMessage = new FileMessage(storageDir, clientDir, fileMessage.getFilename());
-
-        context.writeAndFlush(new CommandMessage(command, fileMessage));
-    }
-
-    private void onDownloadFileErrorServerResponse(CommandMessage commandMessage) {
-        printMsg("[client]CommandHandlerClient.onDownloadFileErrorServerResponse() command: " + commandMessage.getCommand());
-    }
-
-    private void onDownloadFileFragOkServerResponse(CommandMessage commandMessage) {
-        FileFragmentMessage fileFragmentMessage = (FileFragmentMessage) commandMessage.getMessageObject();
-
-        String toTempDir = storageClient.getDefaultDirClient();
-        toTempDir = toTempDir.concat("/").concat(fileFragmentMessage.getToTempDir());
-        String toDir = Paths.get(toTempDir).getParent().toString();
-
-        if(fileUtils.saveFileFragment(toTempDir, fileFragmentMessage)){
-
-        } else {
-            printMsg("[client]" + fileUtils.getMsg());
-
-        }
-        if(fileFragmentMessage.isFinalFileFragment()){
-            if(fileUtils.compileFileFragments(toTempDir, toDir, fileFragmentMessage)){
+        if(fileFragMsg.isFinalFileFragment()){
+            if(storageClient.compileItemFragments(fileFragMsg)){
+                controller.updateClientItemListInGUI(
+                        fileFragMsg.getToDirectoryItem());
             } else {
                 printMsg("[client]" + fileUtils.getMsg());
             }
         }
+    }
+    private void updateStorageItemListInGUI(CommandMessage commandMessage) {
+        DirectoryMessage directoryMessage = (DirectoryMessage) commandMessage.getMessageObject();
+        controller.updateStorageItemListInGUI(directoryMessage.getDirectoryItem(),
+                directoryMessage.getItemsList());
     }
 
     @Override

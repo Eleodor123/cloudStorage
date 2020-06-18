@@ -13,32 +13,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Objects;
 
 public class FileUtils {
-    private String msg;
+    private static FileUtils ownObject = new FileUtils();
 
-    public boolean saveFile(String toDir, FileMessage fileMessage) {
-        try {
-            Path path = Paths.get(toDir, fileMessage.getFilename());
-            Files.write(path, fileMessage.getData(), StandardOpenOption.CREATE);
-            if(Files.size(path) != fileMessage.getFileSize()){
-                msg = "FileUtils.saveFile() - Wrong the saved file size!";
-                return false;
-            }
-        } catch (IOException e) {
-            msg = "FileUtils.saveFile() - Something wrong with the directory or the file!";
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+    public static FileUtils getOwnObject() {
+        return ownObject;
     }
 
-    public boolean readFile(String fromDir, FileMessage fileMessage) {
-        try {
-            fileMessage.readFileData(fromDir);
+    private String msg;
 
-            Path path = Paths.get(fromDir, fileMessage.getFilename());
-            fileMessage.setFileSize(Files.size(path));
+    public boolean readFile(Path realItemPath, FileMessage fileMessage) {
+        try {
+            fileMessage.readFileData(realItemPath.toString());
+            fileMessage.setFileSize(Files.size(realItemPath));
             if(fileMessage.getFileSize() != fileMessage.getData().length){
                 msg = "FileUtils.downloadFile() - Wrong the read file size!";
                 return false;
@@ -51,29 +40,38 @@ public class FileUtils {
         return true;
     }
 
-    public boolean saveFileFragment(String toTempDir, FileFragmentMessage fileFragmentMessage) {
+    public boolean saveFile(Path realItemPath, byte[] data, long fileSize) {
         try {
-            Path path = Paths.get(toTempDir,
-                    fileFragmentMessage.getFragsNames()[fileFragmentMessage.getCurrentFragNumber() - 1]);
-
-            File dir = new File(toTempDir);
-            if(!dir.exists()){
-                dir.mkdir();
+            Files.write(realItemPath, data, StandardOpenOption.CREATE);
+            if(Files.size(realItemPath) != fileSize){
+                msg = "FileUtils.saveFile() - Wrong the saved file size!";
+                return false;
             }
-            Files.write(path, fileFragmentMessage.getData(), StandardOpenOption.CREATE);
+        } catch (IOException e) {
+            msg = "FileUtils.saveFile() - Something wrong with the directory or the file!";
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
-            System.out.println("FileUtils.saveUploadedFileFragment() - " +
-                    "Files.size(path): " + Files.size(path) +
-                    ". fileFragmentMessage.getFileFragmentSize(): " +
-                    fileFragmentMessage.getFileFragmentSize());
-
-            if(Files.size(path) != fileFragmentMessage.getFileFragmentSize()){
-                msg = "FileUtils.saveUploadedFileFragment() - " +
+    public boolean saveFileFragment(Path realToTempDirPath, Path realToFragPath,
+                                    FileFragmentMessage fileFragMsg) {
+        try {
+            File dir = new File(realToTempDirPath.toString());
+            if(!dir.exists()){
+                System.out.println("FileUtils.saveFileFragment() - " +
+                        "dir." + dir.getPath() +
+                        ", dir.mkdir(): " + dir.mkdir());
+            }
+            Files.write(realToFragPath, fileFragMsg.getData(), StandardOpenOption.CREATE);
+            if(Files.size(realToFragPath) != fileFragMsg.getFileFragmentSize()){
+                msg = "FileUtils.saveFileFragment() - " +
                         "Wrong the saved file fragment size!";
                 return false;
             }
         } catch (IOException e) {
-            msg = "FileUtils.saveUploadedFileFragment() - " +
+            msg = "FileUtils.saveFileFragment() - " +
                     "Something wrong with the directory or the file!";
             e.printStackTrace();
             return false;
@@ -81,38 +79,50 @@ public class FileUtils {
         return true;
     }
 
-    public boolean compileFileFragments(
-            String toTempDir, String toDir, FileFragmentMessage fileFragmentMessage
-    ) {
+    public boolean compileFileFragments(Path realToTempDirPath, Path realToFilePath,
+                                        FileFragmentMessage fileFragMsg) {
         long start = System.currentTimeMillis();
 
         try {
-            Path pathToFile = Paths.get(toDir, fileFragmentMessage.getFilename());
-            Files.deleteIfExists(pathToFile);
-            Files.createFile(pathToFile);
-
-            for (int i = 1; i <= fileFragmentMessage.getFragsNames().length; i++) {
+            File tempDirFileObject = new File(realToTempDirPath.toString());
+            File[] fragFiles = tempDirFileObject.listFiles();
+            assert fragFiles != null;
+            if(fragFiles.length != fileFragMsg.getTotalFragsNumber()){
+                msg = ("FileUtils.compileFileFragments() - " +
+                        "Wrong the saved file fragments count!");
+                return false;
+            }
+            Files.deleteIfExists(realToFilePath);
+            Files.createFile(realToFilePath);
+            for (File fragFile : fragFiles) {
                 ReadableByteChannel source = Channels.newChannel(
-                        Files.newInputStream(Paths.get(toTempDir, fileFragmentMessage.getFragsNames()[i - 1])));
+                        Files.newInputStream(Paths.get(fragFile.getPath())));
                 WritableByteChannel destination = Channels.newChannel(
-                        Files.newOutputStream(pathToFile, StandardOpenOption.APPEND));
+                        Files.newOutputStream(realToFilePath, StandardOpenOption.APPEND));
                 copyData(source, destination);
+
+                System.out.println("FileUtils.compileFileFragments() - " +
+                        "fragFiles[i].getName(): " + fragFile.getName() +
+                        "FileFragSize: " + Files.size(Paths.get(fragFile.getPath())) +
+                        ". Files.size(realToFilePath): " + Files.size(realToFilePath));
+
                 source.close();
                 destination.close();
             }
 
-            if(Files.size(pathToFile) != fileFragmentMessage.getFullFileSize()){
-                msg = "FileUtils.compileUploadedFileFragments() - " +
-                        "Wrong the saved entire file size!";
+            if(Files.size(realToFilePath) != fileFragMsg.getFullFileSize()){
+                msg = "FileUtils.compileFileFragments() - " +
+                        "Wrong a size of the saved entire file!";
                 return false;
             } else {
-                for (String fragName : fileFragmentMessage.getFragsNames()) {
-                    Files.delete(Paths.get(toTempDir, fragName));
+                if(!deleteFolder(tempDirFileObject)){
+                    msg = "FileUtils.compileFileFragments() - " +
+                            "Something wrong with the temp folder deleting!!";
+                    return false;
                 }
-                Files.delete(Paths.get(toTempDir));
             }
         } catch (IOException e) {
-            msg = "FileUtils.compileUploadedFileFragments() - " +
+            msg = "FileUtils.compileFileFragments() - " +
                     "Something wrong with the directory or the file!";
             e.printStackTrace();
             return false;
@@ -133,6 +143,27 @@ public class FileUtils {
             }
             buffer.clear();
         }
+    }
+
+    public boolean deleteFileObject(File fileObject) {
+        boolean result;
+        if(fileObject.isDirectory()){
+            result = deleteFolder(fileObject);
+        } else{
+            result = fileObject.delete();
+        }
+        return result;
+    }
+
+    private boolean deleteFolder(File folder) {
+        for (File f : Objects.requireNonNull(folder.listFiles())) {
+            if(f.isDirectory()){
+                deleteFolder(f);
+            } else{
+                System.out.println("FileUtils.deleteFolder() - f.delete(): " + f.delete());
+            }
+        }
+        return Objects.requireNonNull(folder.listFiles()).length == 0 && folder.delete();
     }
 
     public String getMsg() {

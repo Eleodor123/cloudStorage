@@ -4,38 +4,39 @@ import control.StorageControl;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
+import javafx.Controller;
 import messages.DirectoryMessage;
 import messages.FileFragmentMessage;
 import messages.FileMessage;
 import utils.CommandMessage;
 import utils.Commands;
 import utils.FileUtils;
-import javafx.Controller;
-
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class CommandHandlerClient extends ChannelInboundHandlerAdapter {
-    private StorageControl storageClient;
+    private StorageControl storageControl;
     private FileUtils fileUtils;
-    ChannelHandlerContext context;
+    private ChannelHandlerContext context;
     private Controller controller;
 
-    public CommandHandlerClient(StorageControl storageClient) {
-        this.storageClient = storageClient;
-        fileUtils = storageClient.getFileUtils();
-        controller = storageClient.getController();
+    public CommandHandlerClient(StorageControl storageControl) {
+        this.storageControl = storageControl;
+        fileUtils = storageControl.getFileUtils();
+        controller = storageControl.getController();
     }
 
     @Override
     public void channelActive(ChannelHandlerContext context){
         this.context = context;
+
+        storageControl.setCtx(context);
     }
 
     @Override
     public void channelRead(ChannelHandlerContext context, Object msgObject) {
         try {
             CommandMessage commandMessage = (CommandMessage) msgObject;
+            printMsg("[client]CommandHandlerClient.channelRead() - command: "
+                    + commandMessage.getCommand());
             recognizeAndArrangeMessageObject(commandMessage);
         }
         finally {
@@ -50,8 +51,8 @@ public class CommandHandlerClient extends ChannelInboundHandlerAdapter {
                 break;
             case Commands.SERVER_RESPONSE_AUTH_OK:
             case Commands.SERVER_RESPONSE_ITEMS_LIST_OK:
-            case Commands.SERVER_RESPONSE_UPLOAD_ITEM_OK:
-            case Commands.SERVER_RESPONSE_UPLOAD_FILE_FRAGS_OK:
+            case Commands.SERVER_RESPONSE_FILE_UPLOAD_OK:
+            case Commands.SERVER_RESPONSE_FILE_FRAGS_UPLOAD_OK:
             case Commands.SERVER_RESPONSE_RENAME_ITEM_OK:
             case Commands.SERVER_RESPONSE_DELETE_ITEM_OK:
                 updateStorageItemListInGUI(commandMessage);
@@ -59,13 +60,13 @@ public class CommandHandlerClient extends ChannelInboundHandlerAdapter {
             case Commands.SERVER_RESPONSE_AUTH_ERROR:
                 onAuthErrorServerResponse(commandMessage);
                 break;
-            case Commands.SERVER_RESPONSE_UPLOAD_ITEM_ERROR:
+            case Commands.SERVER_RESPONSE_FILE_UPLOAD_ERROR:
                 onUploadItemErrorServerResponse(commandMessage);
                 break;
-            case Commands.SERVER_RESPONSE_DOWNLOAD_ITEM_OK:
+            case Commands.SERVER_RESPONSE_DOWNLOAD_FILE_OK:
                 onDownloadItemOkServerResponse(commandMessage);
                 break;
-            case Commands.SERVER_RESPONSE_DOWNLOAD_ITEM_ERROR:
+            case Commands.SERVER_RESPONSE_DOWNLOAD_FILE_ERROR:
                 onDownloadFileErrorServerResponse(commandMessage);
                 break;
             case Commands.SERVER_RESPONSE_DOWNLOAD_FILE_FRAG_OK:
@@ -75,62 +76,73 @@ public class CommandHandlerClient extends ChannelInboundHandlerAdapter {
     }
 
     private void onServerConnectedResponse(CommandMessage commandMessage) {
-        storageClient.startAuthorization(context);
+        showTextInGUI("Server has connected, insert login and password.");
+        controller.openAuthWindowInGUI();
     }
 
     private void onAuthErrorServerResponse(CommandMessage commandMessage) {
-        printMsg("[client]CommandHandlerClient.onAuthErrorServerResponse() - Invalid login or password");
+        showTextInGUI("Something wrong with your login or password! Insert them again.");
+        controller.openAuthWindowInGUI();
     }
 
     private void onUploadItemErrorServerResponse(CommandMessage commandMessage) {
-        printMsg("[client]CommandMessageManager.onUploadFileErrorServerResponse() command: " + commandMessage.getCommand());
+        printMsg("[client]CommandHandlerClient.onUploadFileErrorServerResponse() command: " + commandMessage.getCommand());
     }
 
     private void onDownloadItemOkServerResponse(CommandMessage commandMessage) {
         FileMessage fileMessage = (FileMessage) commandMessage.getMessageObject();
-        if(storageClient.downloadItem(fileMessage.getClientDirectoryItem(), fileMessage.getItem(),
+        if(storageControl.downloadItem(fileMessage.getClientDirectoryItem(), fileMessage.getItem(),
                 fileMessage.getData(), fileMessage.getFileSize())){
             controller.updateClientItemListInGUI(fileMessage.getClientDirectoryItem());
         } else {
             printMsg("[client]" + fileUtils.getMsg());
+            showTextInGUI(fileUtils.getMsg());
         }
     }
 
     private void onDownloadFileErrorServerResponse(CommandMessage commandMessage) {
-        printMsg("[client]CommandMessageManager.onDownloadFileErrorServerResponse() command: " + commandMessage.getCommand());
+        printMsg("[client]CommandHandlerClient.onDownloadFileErrorServerResponse() command: " + commandMessage.getCommand());
     }
 
     private void onDownloadFileFragOkServerResponse(CommandMessage commandMessage) {
         FileFragmentMessage fileFragMsg = (FileFragmentMessage) commandMessage.getMessageObject();
         int command;
-        if(storageClient.downloadItemFragment(fileFragMsg)){
-            command = Commands.CLIENT_RESPONSE_FILE_DOWNLOAD_OK;
+        if(storageControl.downloadItemFragment(fileFragMsg)){
+            command = Commands.CLIENT_RESPONSE_DOWNLOAD_FILE_FRAG_OK;
         } else {
             printMsg("[client]" + fileUtils.getMsg());
-            command = Commands.CLIENT_RESPONSE_FILE_DOWNLOAD_ERROR;
+            showTextInGUI(fileUtils.getMsg());
+            command = Commands.CLIENT_RESPONSE_DOWNLOAD_FILE_FRAG_ERROR;
         }
         if(fileFragMsg.isFinalFileFragment()){
-            if(storageClient.compileItemFragments(fileFragMsg)){
+            if(storageControl.compileItemFragments(fileFragMsg)){
                 controller.updateClientItemListInGUI(
                         fileFragMsg.getToDirectoryItem());
             } else {
                 printMsg("[client]" + fileUtils.getMsg());
+                showTextInGUI(fileUtils.getMsg());
             }
         }
     }
+
     private void updateStorageItemListInGUI(CommandMessage commandMessage) {
         DirectoryMessage directoryMessage = (DirectoryMessage) commandMessage.getMessageObject();
+        showTextInGUI("");
         controller.updateStorageItemListInGUI(directoryMessage.getDirectoryItem(),
                 directoryMessage.getItemsList());
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext context, Throwable cause) {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
-        context.close();
+        ctx.close();
     }
 
     public void printMsg(String msg){
-        storageClient.printMsg(msg);
+        storageControl.printMsg(msg);
+    }
+
+    public void showTextInGUI(String text){
+        controller.showTextInGUI(text);
     }
 }

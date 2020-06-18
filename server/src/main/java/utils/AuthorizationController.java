@@ -28,8 +28,8 @@ public class AuthorizationController {
         return false;
     }
 
-    private boolean isUserAuthorized(ChannelHandlerContext context, String login) {
-        return storageServer.getAuthorizedUsers().containsKey(context) ||
+    private boolean isUserAuthorized(ChannelHandlerContext ctx, String login) {
+        return storageServer.getAuthorizedUsers().containsKey(ctx) ||
                 storageServer.getAuthorizedUsers().containsValue(login);
     }
 

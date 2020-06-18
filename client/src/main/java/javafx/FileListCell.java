@@ -6,11 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import java.io.File;
+import utils.Item;
+
 import java.io.IOException;
 
-public class FileListCell extends ListCell<File> {
-    private FXMLLoader loader;
+public class FileListCell extends ListCell<Item> {
+    private FXMLLoader mLLoader;
 
     @FXML
     public HBox vbPane;
@@ -27,22 +28,22 @@ public class FileListCell extends ListCell<File> {
     }
 
     @Override
-    protected void updateItem(File item, boolean empty) {
+    protected void updateItem(Item item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
         } else {
-            if (loader == null) {
-                loader = new FXMLLoader(getClass().getResource("/CellItem.fxml"));
-                loader.setController(this);
+            if (mLLoader == null) {
+                mLLoader = new FXMLLoader(getClass().getResource("/Cell.fxml"));
+                mLLoader.setController(this);
                 try {
-                    loader.load();
+                    mLLoader.load();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            nameLabel.setText(item.getName());
+            nameLabel.setText(item.getItemName());
             if(item.isDirectory()){
                 folderImage.setVisible(true);
             } else {

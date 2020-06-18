@@ -29,22 +29,22 @@ public class CommandHandlerServer extends ChannelInboundHandlerAdapter {
         this.context = context;
         CommandMessage commandMessage = (CommandMessage) msg;
         switch (commandMessage.getCommand()) {
-            case Commands.REQUEST_SERVER_FILE_OBJECTS_LIST:
+            case Commands.SERVER_REQUEST_ITEMS_LIST:
                 onDirectoryItemsListClientRequest(commandMessage);
                 break;
-            case Commands.REQUEST_SERVER_FILE_UPLOAD:
+            case Commands.SERVER_REQUEST_FILE_UPLOAD:
                 onUploadItemClientRequest(commandMessage);
                 break;
-            case Commands.REQUEST_SERVER_FILE_DOWNLOAD:
+            case Commands.SERVER_REQUEST_DOWNLOAD_FILE:
                 onDownloadItemClientRequest(commandMessage);
                 break;
-            case Commands.REQUEST_SERVER_FILE_FRAG_UPLOAD:
+            case Commands.SERVER_REQUEST_FILE_FRAG_UPLOAD:
                 onUploadFileFragClientRequest(commandMessage);
                 break;
-            case Commands.REQUEST_SERVER_RENAME_FILE:
+            case Commands.SERVER_REQUEST_RENAME_ITEM:
                 onRenameItemClientRequest(commandMessage);
                 break;
-            case Commands.REQUEST_SERVER_DELETE_FILE:
+            case Commands.SERVER_REQUEST_DELETE_ITEM:
                 onDeleteItemClientRequest(commandMessage);
                 break;
             case Commands.SERVER_RESPONSE_AUTH_OK:
@@ -64,10 +64,10 @@ public class CommandHandlerServer extends ChannelInboundHandlerAdapter {
         FileMessage fileMessage = (FileMessage) commandMessage.getMessageObject();
         if(storageServer.uploadItem(fileMessage.getStorageDirectoryItem(), fileMessage.getItem(),
                 fileMessage.getData(), fileMessage.getFileSize(), userStorageRoot)){
-            command = Commands.SERVER_RESPONSE_UPLOAD_ITEM_OK;
+            command = Commands.SERVER_RESPONSE_FILE_UPLOAD_OK;
         } else {
             printMsg("[server]" + fileUtils.getMsg());
-            command = Commands.SERVER_RESPONSE_UPLOAD_ITEM_ERROR;
+            command = Commands.SERVER_RESPONSE_FILE_UPLOAD_ERROR;
         }
         sendItemsList(fileMessage.getStorageDirectoryItem(), command);
     }
@@ -75,14 +75,6 @@ public class CommandHandlerServer extends ChannelInboundHandlerAdapter {
     private void onDownloadItemClientRequest(CommandMessage commandMessage) throws IOException {
         FileMessage fileMessage = (FileMessage) commandMessage.getMessageObject();
         storageServer.downloadItem(fileMessage, userStorageRoot, context);
-    }
-
-    private void onDownloadFileOkClientResponse(ChannelHandlerContext context, CommandMessage commandMessage) {
-        printMsg("[server]CommandHandlerServer.onDownloadFileOkClientResponse() command: " + commandMessage.getCommand());
-    }
-
-    private void onDownloadFileErrorClientResponse(ChannelHandlerContext context, CommandMessage commandMessage) {
-        printMsg("[server]CommandHandlerServer.onDownloadFileErrorClientResponse() command: " + commandMessage.getCommand());
     }
 
     private void onUploadFileFragClientRequest(CommandMessage commandMessage) {
@@ -95,7 +87,7 @@ public class CommandHandlerServer extends ChannelInboundHandlerAdapter {
         }
         if(fileFragMsg.isFinalFileFragment()){
             if(storageServer.compileItemFragments(fileFragMsg, userStorageRoot)){
-                command = Commands.SERVER_RESPONSE_UPLOAD_FILE_FRAGS_OK;
+                command = Commands.SERVER_RESPONSE_FILE_FRAGS_UPLOAD_OK;
             } else {
                 printMsg("[server]" + fileUtils.getMsg());
                 command = Commands.SERVER_RESPONSE_FILE_FRAGS_UPLOAD_ERROR;
@@ -130,7 +122,7 @@ public class CommandHandlerServer extends ChannelInboundHandlerAdapter {
         userStorageRoot = Paths.get(commandMessage.getDirectory());
         Item storageDirItem = new Item(storageServer.getSTORAGE_DEFAULT_DIR());
         sendItemsList(storageDirItem, commandMessage.getCommand());
-        printMsg("[server]CommandMessageManager.onAuthClientRequest() - " +
+        printMsg("[server]CommandHandlerServer.onAuthClientRequest() - " +
                 "removed pipeline: " + context.channel().pipeline().remove(AuthGateway.class));
     }
 
@@ -141,9 +133,9 @@ public class CommandHandlerServer extends ChannelInboundHandlerAdapter {
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    public void exceptionCaught(ChannelHandlerContext context, Throwable cause) {
         cause.printStackTrace();
-        ctx.close();
+        context.close();
     }
 
     public void printMsg(String msg){

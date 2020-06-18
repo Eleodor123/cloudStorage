@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox fx:id="globParent" alignment="center" spacing="2.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.RenameController">
-    <TextField fx:id="newName" maxWidth="Infinity" prefHeight="25.0" promptText="insert a new name" />
+    <TextField fx:id="newName" maxWidth="Infinity" prefHeight="25.0" promptText="New name" />
     <Button onAction="#saveNewName" prefHeight="25.0" prefWidth="60.0" text="Confirm" textAlignment="CENTER">
     </Button>
    <padding>

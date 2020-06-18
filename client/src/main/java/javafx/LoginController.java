@@ -16,13 +16,27 @@ public class LoginController {
     @FXML
     VBox globParent;
 
-    public int id;
-
     public Controller backController;
 
     public void auth(ActionEvent actionEvent) {
-        System.out.println(login.getText() + " " + password.getText());
-        System.out.println("id = " + id);
-        globParent.getScene().getWindow().hide();
+        if(isLoginPasswordCorrect(login.getText(), password.getText())){
+            backController.setLogin(login.getText());
+            backController.setPassword(password.getText());
+            backController.startAuthorisation();
+            globParent.getScene().getWindow().hide();
+        }
     }
+
+    private boolean isLoginPasswordCorrect(String login, String password){
+
+        System.out.println("LoginController.isLoginPasswordCorrect() - login: " + login
+                + ", password: " + password);
+
+        return !login.trim().isEmpty() && !password.trim().isEmpty();
+    }
+
+    public void onRegistrationLink(ActionEvent actionEvent) {
+        System.out.println("LoginController.onRegistrationLink() - get registration");
+    }
+
 }

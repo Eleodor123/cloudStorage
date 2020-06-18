@@ -1,0 +1,10 @@
+utils\Item.class
+messages\DirectoryMessage.class
+utils\Commands.class
+utils\FileUtils.class
+utils\CommandMessage.class
+messages\FileFragmentMessage.class
+messages\AbstractMessage.class
+messages\AuthMessage.class
+messages\FileMessage.class
+utils\ItemUtils.class

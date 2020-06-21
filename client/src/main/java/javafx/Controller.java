@@ -308,6 +308,6 @@ public class Controller implements Initializable {
     }
 
     public void dispose() {
-        System.out.println("Отправляем сообщение о закрытии");
+        System.out.println("Closing");
     }
 }

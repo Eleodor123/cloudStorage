@@ -45,16 +45,6 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Button>
-            <Button fx:id="clientNewFolderButton" text="NewFolder">
-               <graphic>
-                   <ImageView fitHeight="22.0" fitWidth="22.0">
-                       <Image url="images/empty.png"/>
-                   </ImageView>
-               </graphic>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </Button>
             <VBox.margin>
                <Insets left="2.0" right="2.0" top="2.0" />
             </VBox.margin>
@@ -99,16 +89,6 @@
                     <graphic>
                         <ImageView fitHeight="22.0" fitWidth="22.0">
                             <Image url="images/red-go-up-md-22x22.png"/>
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                    </padding>
-                </Button>
-                <Button fx:id="storageNewFolderButton" text="NewFolder">
-                    <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0">
-                            <Image url="images/empty.png"/>
                         </ImageView>
                     </graphic>
                     <padding>

@@ -21,13 +21,13 @@ public class StorageServer {
     private final String STORAGE_DEFAULT_DIR = "";
     private Item storageDefaultDirItem;
     private Map<ChannelHandlerContext, String> authorizedUsers;
-    private AuthorizationController usersAuthController;
+    private AuthorizationController authorizationController;
     private FileUtils fileUtils = FileUtils.getOwnObject();
     private final ItemUtils itemUtils = ItemUtils.getOwnObject();
 
     public void run() throws Exception {
         authorizedUsers = new HashMap<>();
-        usersAuthController = new AuthorizationController(this);
+        authorizationController = new AuthorizationController(this);
         storageDefaultDirItem = new Item(STORAGE_DEFAULT_DIR);
         new NettyServer(this, PORT).run();
     }
@@ -54,7 +54,7 @@ public class StorageServer {
                         fileFragMsg.getToTempDirName()).toString(),
                 userStorageRoot);
         Path realToFragPath = Paths.get(
-                realToTempDirPath.toString(), fileFragMsg.getFragName());
+                        realToTempDirPath.toString(), fileFragMsg.getFragName());
         return fileUtils.saveFileFragment(realToTempDirPath, realToFragPath, fileFragMsg);
     }
 
@@ -68,7 +68,7 @@ public class StorageServer {
                 Paths.get(
                         fileFragMsg.getToDirectoryItem().getItemPathname(),
                         fileFragMsg.getItem().getItemName()).toString(),
-                userStorageRoot);
+                        userStorageRoot);
         return fileUtils.compileFileFragments(realToTempDirPath, realToFilePath, fileFragMsg);
     }
 
@@ -91,53 +91,20 @@ public class StorageServer {
     private void downloadFileByFrags(Item clientToDirItem, Item storageItem,
                                      long fullFileSize, Path userStorageRoot,
                                      ChannelHandlerContext ctx) throws IOException {
-        long start = System.currentTimeMillis();
-        int totalEntireFragsNumber = (int) fullFileSize / FileFragmentMessage.CONST_FRAG_SIZE;
-        int finalFileFragmentSize = (int) fullFileSize - FileFragmentMessage.CONST_FRAG_SIZE * totalEntireFragsNumber;
-        int totalFragsNumber = (finalFileFragmentSize == 0) ?
-                totalEntireFragsNumber : totalEntireFragsNumber + 1;
-
-        long startByte = 0;
-        byte[] data = new byte[FileFragmentMessage.CONST_FRAG_SIZE];
-
-        for (int i = 1; i <= totalEntireFragsNumber; i++) {
-            FileFragmentMessage fileFragmentMessage = new FileFragmentMessage(
-                    clientToDirItem, storageItem, fullFileSize, i, totalFragsNumber,
-                    FileFragmentMessage.CONST_FRAG_SIZE, data);
-            fileFragmentMessage.readFileDataToFragment(
-                    itemUtils.getRealPath(storageItem.getItemPathname(), userStorageRoot).toString(),
-                    startByte);
-            startByte += FileFragmentMessage.CONST_FRAG_SIZE;
-            ctx.writeAndFlush(new CommandMessage(Commands.SERVER_RESPONSE_DOWNLOAD_FILE_FRAG_OK,
-                    fileFragmentMessage));
-        }
-
-        if(totalFragsNumber > totalEntireFragsNumber){
-            byte[] dataFinal = new byte[finalFileFragmentSize];
-            FileFragmentMessage fileFragmentMessage = new FileFragmentMessage(
-                    clientToDirItem, storageItem, fullFileSize, totalFragsNumber,
-                    totalFragsNumber, finalFileFragmentSize, dataFinal);
-            fileFragmentMessage.readFileDataToFragment(
-                    itemUtils.getRealPath(storageItem.getItemPathname(), userStorageRoot).toString(),
-                    startByte);
-            ctx.writeAndFlush(new CommandMessage(Commands.SERVER_RESPONSE_DOWNLOAD_FILE_FRAG_OK,
-                    fileFragmentMessage));
-        }
-
-        long finish = System.currentTimeMillis() - start;
-        System.out.println("CloudStorageClient.uploadFileByFrags() - duration(mc): " + finish);
+        fileUtils.cutAndSendFileByFrags(clientToDirItem, storageItem, fullFileSize,
+                userStorageRoot, ctx, Commands.SERVER_RESPONSE_DOWNLOAD_FILE_FRAG_OK);
     }
 
     private void downloadEntireFile(Item clientToDirItem, Item storageItem, Item item,
-                                    long fileSize, Path userStorageRoot, ChannelHandlerContext ctx){
+                       long fileSize, Path userStorageRoot, ChannelHandlerContext ctx){
         FileMessage fileMessage = new FileMessage(storageItem, clientToDirItem, item, fileSize);
         int command;
         if(fileUtils.readFile(itemUtils.getRealPath(storageItem.getItemPathname(), userStorageRoot),
                 fileMessage)){
-            command = Commands.SERVER_RESPONSE_DOWNLOAD_ITEM_OK;
+            command = Commands.SERVER_RESPONSE_DOWNLOAD_FILE_OK;
         } else {
             printMsg("[server]" + fileUtils.getMsg());
-            command = Commands.SERVER_RESPONSE_DOWNLOAD_ITEM_ERROR;
+            command = Commands.SERVER_RESPONSE_DOWNLOAD_FILE_ERROR;
         }
         ctx.writeAndFlush(new CommandMessage(command, fileMessage));
     }
@@ -168,8 +135,8 @@ public class StorageServer {
         return authorizedUsers;
     }
 
-    public AuthorizationController getUsersAuthController() {
-        return usersAuthController;
+    public AuthorizationController getAuthorizationController() {
+        return authorizationController;
     }
 
     public FileUtils getFileUtils() {
@@ -179,4 +146,5 @@ public class StorageServer {
     public void printMsg(String msg){
         log.append(msg).append("\n");
     }
+
 }

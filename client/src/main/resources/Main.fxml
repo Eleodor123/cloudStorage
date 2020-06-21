@@ -12,7 +12,6 @@
 
 <VBox alignment="center" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
     <HBox VBox.vgrow="ALWAYS">
-        <!--        Client Side        -->
         <VBox spacing="2.0" HBox.hgrow="ALWAYS">
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="Infinity" text="Client Side" textAlignment="JUSTIFY" wrapText="true">
                 <padding>
@@ -21,9 +20,9 @@
                 <VBox.margin>
                     <Insets left="2.0" right="2.0" />
                 </VBox.margin>
-                <font>
-                    <Font name="System Bold" size="14.0" />
-                </font>
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
             </Label>
             <HBox spacing="2.0" VBox.vgrow="ALWAYS">
                 <Button fx:id="clientHomeButton" onMouseClicked="#onClientHomeBtnClicked" text="Home">
@@ -32,48 +31,47 @@
                             <Image url="images/home-icon-24x24.png" />
                         </ImageView>
                     </graphic>
-                    <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                    </padding>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
                 </Button>
-                <Button fx:id="clientGoUpButton" onMouseClicked="#onClientGoUpBtnClicked" text="GoUp">
-                    <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0">
-                            <Image url="images/red-go-up-md-22x22.png"/>
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                    </padding>
-                </Button>
-                <Button fx:id="clientNewFolderButton" text="NewFolder">
-                    <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0">
-                            <Image url="images/empty.png"/>
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                    </padding>
-                </Button>
-                <VBox.margin>
-                    <Insets left="2.0" right="2.0" top="2.0" />
-                </VBox.margin>
+            <Button fx:id="clientGoUpButton" onMouseClicked="#onClientGoUpBtnClicked" text="GoUp">
+               <graphic>
+                   <ImageView fitHeight="22.0" fitWidth="22.0">
+                       <Image url="images/red-go-up-md-22x22.png"/>
+                   </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </Button>
+            <Button fx:id="clientNewFolderButton" text="NewFolder">
+               <graphic>
+                   <ImageView fitHeight="22.0" fitWidth="22.0">
+                       <Image url="images/empty.png"/>
+                   </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </Button>
+            <VBox.margin>
+               <Insets left="2.0" right="2.0" top="2.0" />
+            </VBox.margin>
             </HBox>
             <Label fx:id="clientDirLabel" maxWidth="Infinity" prefWidth="220.0" style="-fx-background-color: #48d1cc;" text=".../" textAlignment="JUSTIFY" wrapText="true">
-                <padding>
-                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                </padding>
-                <VBox.margin>
-                    <Insets left="2.0" right="2.0" />
-                </VBox.margin>
-            </Label>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+            <VBox.margin>
+               <Insets left="2.0" right="2.0" />
+            </VBox.margin>
+             </Label>
             <ListView fx:id="clientItemListView" VBox.vgrow="ALWAYS">
-                <VBox.margin>
-                    <Insets bottom="2.0" left="2.0" right="2.0" />
-                </VBox.margin></ListView>
+            <VBox.margin>
+               <Insets bottom="2.0" left="2.0" right="2.0" />
+            </VBox.margin></ListView>
         </VBox>
-        <!--        Cloud Storage Side        -->
         <VBox spacing="2.0" HBox.hgrow="ALWAYS">
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="Infinity" text="Cloud Storage Side" textAlignment="JUSTIFY" wrapText="true">
                 <padding>
@@ -135,7 +133,7 @@
                 </VBox.margin></ListView>
         </VBox>
     </HBox>
-    <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" maxWidth="Infinity" style="-fx-background-color: #FFF;" text="..." textAlignment="CENTER">
+    <Label fx:id="noticeLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="Infinity" style="-fx-background-color: #FFF;" textAlignment="CENTER">
         <font>
             <Font size="18.0" />
         </font></Label>

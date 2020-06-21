@@ -14,12 +14,12 @@ import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 
 public class NettyClient {
-    private StorageControl storageClient;
+    private StorageControl StorageControl;
     private final String IP_ADDR;
     private final int PORT;
 
-    public NettyClient(StorageControl storageClient, String IP_ADDR, int PORT) {
-        this.storageClient = storageClient;
+    public NettyClient(StorageControl StorageControl, String IP_ADDR, int PORT) {
+        this.StorageControl = StorageControl;
         this.IP_ADDR = IP_ADDR;
         this.PORT = PORT;
     }
@@ -30,18 +30,20 @@ public class NettyClient {
             Bootstrap b = new Bootstrap();
             b.group(workerGroup)
                     .channel(NioSocketChannel.class);
-            b.option(ChannelOption.SO_KEEPALIVE, true);
+                    b.option(ChannelOption.SO_KEEPALIVE, true);
             b.handler(new ChannelInitializer<SocketChannel>() {
                 protected void initChannel(SocketChannel socketChannel) {
-                    socketChannel.pipeline().addLast(
-                            new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
-                            new ObjectEncoder(),
-                            new CommandHandlerClient(storageClient)
+                socketChannel.pipeline().addLast(
+                    new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                    new ObjectEncoder(),
+                    new CommandHandlerClient(StorageControl)
                     );
                 }
             });
             ChannelFuture future = b.connect(IP_ADDR, PORT).sync();
+
             onConnectionReady(future);
+
             future.channel().closeFuture().sync();
         } finally {
             workerGroup.shutdownGracefully();
@@ -53,6 +55,6 @@ public class NettyClient {
     }
 
     public void printMsg(String msg){
-        storageClient.printMsg(msg);
+        StorageControl.printMsg(msg);
     }
 }

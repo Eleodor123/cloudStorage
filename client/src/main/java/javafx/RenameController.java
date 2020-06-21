@@ -17,7 +17,13 @@ public class RenameController {
 
     @FXML
     public void saveNewName(ActionEvent actionEvent) {
-        backController.setNewName(newName.getText());
-        globParent.getScene().getWindow().hide();
+        if(isNewNameCorrect(newName.getText())){
+            backController.setNewName(newName.getText());
+            globParent.getScene().getWindow().hide();
+        }
+    }
+
+    private boolean isNewNameCorrect(String newName){
+        return !newName.trim().isEmpty();
     }
 }

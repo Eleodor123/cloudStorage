@@ -17,46 +17,40 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class StorageControl {
-    private Controller Controller;
+    private Controller controller;
     ChannelHandlerContext context;
-    private static final String IP_ADDR = "127.0.0.1";
+    private static final String IP_ADDR = "localhost";
     private static final int PORT = 8190;
     private final PrintStream log = System.out;
-
     public static final Path CLIENT_ROOT = Paths.get("storage","client_storage");
     private FileUtils fileUtils = FileUtils.getOwnObject();
     private final ItemUtils itemUtils = ItemUtils.getOwnObject();
 
-    private final String login = "login1";
-    private final String password = "pass1";
-
-    public StorageControl(Controller Controller) {
-        this.Controller = Controller;
+    public StorageControl(Controller controller) {
+        this.controller = controller;
     }
 
     public void run() throws Exception {
         new NettyClient(this, IP_ADDR, PORT).run();
     }
 
-    public void startAuthorization(ChannelHandlerContext context) {
-        this.context = context;
-        printMsg("***StorageControl.requestAuthorization() - has started***");
-        requestAuthorization(login, password);
-        printMsg("***StorageControl.requestAuthorization() - has finished***");
+    public void startAuthorization() {
+        requestAuthorization(controller.getLogin(), controller.getPassword());
     }
 
     private void requestAuthorization(String login, String password) {
-        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_AUTH,
+        context.writeAndFlush(new CommandMessage(Commands.SERVER_REQUEST_AUTH,
                 new AuthMessage(login, password)));
     }
 
-    public void demandDirectoryItemList(String directory) {
-        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_OBJECTS_LIST,
-                new DirectoryMessage(directory)));
+    public void demandDirectoryItemList(String directoryPathname) {
+        context.writeAndFlush(new CommandMessage(Commands.SERVER_REQUEST_ITEMS_LIST,
+                new DirectoryMessage(directoryPathname)));
     }
 
     public void demandUploadItem(Item storageToDirItem, Item clientItem) throws IOException {
         if(clientItem.isDirectory()){
+            showTextInGUI("It is not allowed to upload a directory!");
             return;
         }
         Path realClientItemPath = itemUtils.getRealPath(clientItem.getItemPathname(), CLIENT_ROOT);
@@ -69,48 +63,8 @@ public class StorageControl {
     }
 
     private void uploadFileByFrags(Item storageToDirItem, Item clientItem, long fullFileSize) throws IOException {
-        long start = System.currentTimeMillis();
-
-        int totalEntireFragsNumber = (int) fullFileSize / FileFragmentMessage.CONST_FRAG_SIZE;
-        int finalFileFragmentSize = (int) fullFileSize - FileFragmentMessage.CONST_FRAG_SIZE * totalEntireFragsNumber;
-        int totalFragsNumber = (finalFileFragmentSize == 0) ?
-                totalEntireFragsNumber : totalEntireFragsNumber + 1;
-
-        System.out.println("StorageControl.uploadFileByFrags() - fullFileSize: " + fullFileSize);
-        System.out.println("StorageControl.uploadFileByFrags() - totalFragsNumber: " + totalFragsNumber);
-        System.out.println("StorageControl.uploadFileByFrags() - totalEntireFragsNumber: " + totalEntireFragsNumber);
-
-        long startByte = 0;
-        byte[] data = new byte[FileFragmentMessage.CONST_FRAG_SIZE];
-        String[] fragsNames = new String[totalFragsNumber];
-        for (int i = 1; i <= totalEntireFragsNumber; i++) {
-            FileFragmentMessage fileFragmentMessage = new FileFragmentMessage(
-                    storageToDirItem, clientItem, fullFileSize, i, totalFragsNumber,
-                    FileFragmentMessage.CONST_FRAG_SIZE, data);
-            fileFragmentMessage.readFileDataToFragment(
-                    itemUtils.getRealPath(clientItem.getItemPathname(), CLIENT_ROOT).toString(),
-                    startByte);
-            startByte += FileFragmentMessage.CONST_FRAG_SIZE;
-            context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_FRAG_UPLOAD,
-                    fileFragmentMessage));
-        }
-
-        System.out.println("StorageControl.uploadFileByFrags() - currentFragNumber: " + totalFragsNumber);
-        System.out.println("StorageControl.uploadFileByFrags() - finalFileFragmentSize: " + finalFileFragmentSize);
-
-        if(totalFragsNumber > totalEntireFragsNumber){
-            byte[] dataFinal = new byte[finalFileFragmentSize];
-            FileFragmentMessage fileFragmentMessage = new FileFragmentMessage(
-                    storageToDirItem, clientItem, fullFileSize, totalFragsNumber,
-                    totalFragsNumber, finalFileFragmentSize, dataFinal);
-            fileFragmentMessage.readFileDataToFragment(
-                    itemUtils.getRealPath(clientItem.getItemPathname(), CLIENT_ROOT).toString(),
-                    startByte);
-            context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_FRAG_UPLOAD,
-                    fileFragmentMessage));
-        }
-        long finish = System.currentTimeMillis() - start;
-        System.out.println("StorageControl.uploadFileByFrags() - duration(mc): " + finish);
+        fileUtils.cutAndSendFileByFrags(storageToDirItem, clientItem, fullFileSize,
+                CLIENT_ROOT, context, Commands.SERVER_REQUEST_FILE_FRAG_UPLOAD);
     }
 
     private void uploadEntireFile(Item storageToDirItem, Item clientItem, long fileSize) {
@@ -118,16 +72,17 @@ public class StorageControl {
                 clientItem, fileSize);
         if(fileUtils.readFile(itemUtils.getRealPath(clientItem.getItemPathname(), CLIENT_ROOT),
                 fileMessage)){
-            context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_UPLOAD,
+            context.writeAndFlush(new CommandMessage(Commands.SERVER_REQUEST_FILE_UPLOAD,
                     fileMessage));
         } else {
             printMsg("[client]" + fileUtils.getMsg());
+            showTextInGUI(fileUtils.getMsg());
         }
     }
 
     public void demandDownloadItem(Item storageFromDirItem, Item clientToDirItem, Item storageItem){
         FileMessage fileMessage = new FileMessage(storageFromDirItem, clientToDirItem, storageItem);
-        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_FILE_UPLOAD,
+        context.writeAndFlush(new CommandMessage(Commands.SERVER_REQUEST_DOWNLOAD_FILE,
                 fileMessage));
     }
 
@@ -171,7 +126,7 @@ public class StorageControl {
     }
 
     public void demandRenameItem(Item storageDirectoryItem, Item storageOriginItem, String newName) {
-        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_RENAME_FILE,
+        context.writeAndFlush(new CommandMessage(Commands.SERVER_REQUEST_RENAME_ITEM,
                 new FileMessage(storageDirectoryItem, storageOriginItem, newName)));
     }
 
@@ -181,7 +136,7 @@ public class StorageControl {
     }
 
     public void demandDeleteItem(Item storageDirectoryItem, Item item) {
-        context.writeAndFlush(new CommandMessage(Commands.REQUEST_SERVER_DELETE_FILE,
+        context.writeAndFlush(new CommandMessage(Commands.SERVER_REQUEST_DELETE_ITEM,
                 new FileMessage(storageDirectoryItem, item)));
     }
 
@@ -199,10 +154,18 @@ public class StorageControl {
     }
 
     public Controller getController() {
-        return Controller;
+        return controller;
+    }
+
+    public void setCtx(ChannelHandlerContext context) {
+        this.context = context;
     }
 
     public void printMsg(String msg){
         log.append(msg).append("\n");
+    }
+
+    public void showTextInGUI(String text){
+        controller.showTextInGUI(text);
     }
 }

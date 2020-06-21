@@ -1,60 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5486f60-dc6d-4eb6-acdf-9614ca689a09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/additions/HW1.TXT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/additions/HW2.TXT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/additions/HW3.TXT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/additions/HW4.TXT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/control/StorageControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/control/StorageControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/javafx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/javafx/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/javafx/FileListCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/javafx/FileListCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/javafx/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/javafx/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/javafx/RenameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/javafx/RenameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/netty/CommandHandlerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/netty/CommandHandlerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/netty/NettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/netty/NettyClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/CellItem.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/Rename.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/Rename.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/images/empty.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/images/empty.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/images/wall.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/images/wall.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/jdbc/DBConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/jdbc/DBConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/netty/AuthGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/netty/AuthGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/netty/CommandHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/netty/CommandHandlerServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/netty/NettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/netty/NettyServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/utils/AuthorizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/utils/AuthorizationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/utils/StorageServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/utils/StorageServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/AbstractMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/messages/AbstractMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/AuthMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/messages/AuthMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/DirectoryMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/messages/DirectoryMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/FileFragmentMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/messages/FileFragmentMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/messages/FileMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/messages/FileMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/utils/CommandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/utils/CommandMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/utils/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/utils/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/utils/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/utils/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/utils/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/java/utils/ItemUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/utils/ItemUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/messages/AbstractMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/messages/AbstractMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/messages/AuthMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/messages/AuthMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/messages/DirectoryMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/messages/DirectoryMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/messages/FileFragmentMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/messages/FileFragmentMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/messages/FileMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/messages/FileMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/utils/CommandMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/utils/CommandMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/utils/Commands.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/utils/Commands.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/utils/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/utils/FileUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/utils/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/utils/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/target/classes/utils/ItemUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/shared/target/classes/utils/ItemUtils.class" afterDir="false" />
-    </list>
+    <list default="true" id="d5486f60-dc6d-4eb6-acdf-9614ca689a09" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/client/target/" />
@@ -99,8 +46,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shared/src/main/java/utils/FileUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+            <state relative-caret-position="-34">
+              <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,21 +60,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
               <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/main/java/javafx/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3392">
-              <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-              <folding>
-                <element signature="e#2752#2753#0" expanded="true" />
-                <element signature="e#2802#2803#0" expanded="true" />
-                <element signature="e#2852#2853#0" expanded="true" />
-                <element signature="e#2915#2916#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -150,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/src/main/java/utils/ItemUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
+            <state relative-caret-position="969">
               <caret line="63" selection-start-line="63" selection-end-line="63" />
               <folding>
                 <element signature="e#1772#1773#0" expanded="true" />
@@ -163,7 +98,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/StorageServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
+            <state relative-caret-position="272">
               <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
             </state>
           </provider>
@@ -293,6 +228,15 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="client" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="client" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="shared" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
@@ -315,7 +259,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -387,6 +330,15 @@
             <path>
               <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
               <item name="geekbrains-cloud-storage" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="geekbrains-cloud-storage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="geekbrains-cloud-storage" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -420,6 +372,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -559,8 +512,8 @@
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8788368" visible="true" weight="0.2153518" />
-      <window_info id="Structure" order="1" sideWeight="0.12116317" side_tool="true" visible="true" weight="0.2153518" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.87757313" visible="true" weight="0.21748401" />
+      <window_info id="Structure" order="1" sideWeight="0.12242687" side_tool="true" visible="true" weight="0.21748401" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -677,13 +630,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/additions/HW4.TXT">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/additions/HW4.TXT" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_241/src.zip!/java/lang/Runnable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
@@ -771,37 +718,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/resources/CellItem.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/resources/CellItem.fxml" />
     <entry file="file://$PROJECT_DIR$/client/src/main/resources/Login.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/resources/Main.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="140" selection-start-line="140" selection-end-line="140" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/resources/Rename.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/netty/CommandHandlerClient.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -919,12 +859,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/utils.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/utils.iml" />
     <entry file="file://$PROJECT_DIR$/shared/src/main/java/utils/ItemUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
+        <state relative-caret-position="969">
           <caret line="63" selection-start-line="63" selection-end-line="63" />
           <folding>
             <element signature="e#1772#1773#0" expanded="true" />
@@ -977,15 +915,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/utils/StorageServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
+        <state relative-caret-position="272">
           <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shared/src/main/java/utils/FileUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        <state relative-caret-position="-34">
+          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1041,7 +982,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>utils</last-edited>
+          <last-edited>client</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
